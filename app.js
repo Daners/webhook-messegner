@@ -137,6 +137,8 @@ function handleMessage(sender_psid, received_message) {
                  }
            }
 
+             callSendAPI(sender_psid, response);
+
         })
         .catch(err => {
         console.error('Error while sending message to Recast.AI', err)
@@ -172,10 +174,10 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
-
+        callSendAPI(sender_psid, response);
   }
     // Sends the response message
-    callSendAPI(sender_psid, response);
+
 }
 
 // Handles messaging_postbacks events
