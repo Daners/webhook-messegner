@@ -113,13 +113,13 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
   if (received_message.text) {
       // Create the payload for a basic text message
-    request.converseText(received_message.text, { conversationToken: sender_psid })
-    .then(result   => {
-       console.log('The conversation action is: ', result)
-    })
-    .catch(err => {
-    console.error('Error while sending message to Recast.AI', err)
-  })
+    requestIA.converseText(received_message.text, { conversationToken: sender_psid })
+        .then(result   => {
+           console.log('The conversation action is: ', result)
+        })
+        .catch(err => {
+        console.error('Error while sending message to Recast.AI', err)
+      })
 
       response = {
         "text": `You sent the message: "${received_message.text}". Now send me an image!`
