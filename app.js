@@ -9,6 +9,8 @@ const request = require('request');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var config = require('config');
+const recastai = require('recastai')
+const requestIA = new recastai.request(config.get("recastToken"), "es");
 var app = express();
 
 // view engine setup
@@ -111,6 +113,14 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
   if (received_message.text) {
       // Create the payload for a basic text message
+    request.converseText({received_message.text, { conversationToken: sender_psid })
+    .then(result   => {
+       console.log('The conversation action is: ', result)
+    })
+    .catch(err => {
+    console.error('Error while sending message to Recast.AI', err)
+  })
+
       response = {
         "text": `You sent the message: "${received_message.text}". Now send me an image!`
       }
@@ -125,7 +135,7 @@ function handleMessage(sender_psid, received_message) {
           "template_type": "generic",
           "elements": [{
             "title": "Es correcta la imagen?",
-            "subtitle": "Tap al boon para contestar.",
+            "subtitle": "Tap al boton para contestar.",
             "image_url": attachment_url,
             "buttons": [
               {
@@ -151,6 +161,19 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+  let response;
+
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // Set the response based on the postback payload
+  if (payload === 'yes') {
+    response = { "text": "Gracias!" }
+  } else if (payload === 'no') {
+    response = { "text": "Prueba con otra imagen." }
+  }
+  // Send the message to acknowledge the postback
+  callSendAPI(sender_psid, response);
 
 }
 
