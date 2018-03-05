@@ -130,8 +130,7 @@ function handleMessage(sender_psid, received_message) {
                            "template_type": "generic",
                            "elements": [{
                              "title": "Es correcta la imagen?",
-                             "subtitle": "Tap al boton para contestar.",
-                             "image_url": attachment_url
+                             "image_url": result.content
                            }]
                          }
                        }
