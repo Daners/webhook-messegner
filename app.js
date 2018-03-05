@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var config = require('config');
 var app = express();
 
 // view engine setup
@@ -34,6 +34,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+const PAGE_ACCESS_TOKEN = config.get("pageToken");
+const VERIFY_TOKEN = config.get("verifyToken");
+
+
+
 // Creates the endpoint for our webhook
 app.post('/webhook', (req, res) => {
 
@@ -46,6 +51,9 @@ app.post('/webhook', (req, res) => {
       // will only ever contain one message, so we get index 0
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
+      // Get the sender PSID
+      let sender_psid = webhook_event.sender.id;
+      console.log('Sender PSID: ' + sender_psid);
     });
     // Returns a '200 OK' response to all requests
     res.status(200).send('EVENT_RECEIVED');
@@ -59,7 +67,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "P0nt3r1k0s0!"
+
 
   // Parse the query params
   let mode = req.query['hub.mode'];
@@ -86,6 +94,21 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+// Handles messages events
+function handleMessage(sender_psid, received_message) {
+
+}
+
+// Handles messaging_postbacks events
+function handlePostback(sender_psid, received_postback) {
+
+}
+
+// Sends response messages via the Send API
+function callSendAPI(sender_psid, response) {
+
+}
 
 
 module.exports = app;
