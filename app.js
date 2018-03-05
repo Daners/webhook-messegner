@@ -115,15 +115,34 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(result   => {
-           console.log('The conversation action is: ', result)
+           console.log('The conversation action is: ', result);
+
+           if(result.type === "text"){
+             response = {
+               "text": result.content
+             }
+           }else if(result.type === "picture"){
+                 response = {
+                   "attachment": {
+                     "type": "template",
+                     "payload": {
+                       "template_type": "generic",
+                       "elements": [{
+                         "title": "Es correcta la imagen?",
+                         "subtitle": "Tap al boton para contestar.",
+                         "image_url": attachment_url
+                       }]
+                     }
+                   }
+                 }
+           }
+
         })
         .catch(err => {
         console.error('Error while sending message to Recast.AI', err)
-      })
+      });
 
-      response = {
-        "text": `You sent the message: "${received_message.text}". Now send me an image!`
-      }
+
   }else if (received_message.attachments) {
 
     // Gets the URL of the message attachment
