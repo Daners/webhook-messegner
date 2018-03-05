@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var config = require('config');
 const recastai = require('recastai')
-var build = new recastai.build('YOUR_TOKEN', 'en')
+var build = new recastai.build(config.get("recastTokenDev"), 'en')
 var app = express();
 
 // view engine setup
@@ -113,7 +113,7 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
   if (received_message.text) {
       // Create the payload for a basic text message
-  build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
+      build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(result   => {
            console.log('The conversation action is: ', result)
         })
