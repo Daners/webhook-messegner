@@ -75,6 +75,7 @@ app.post('/webhook', (req, res) => {
   }
 });
 
+
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
@@ -100,6 +101,10 @@ app.get('/webhook', (req, res) => {
   }
 });
 
+
+app.get("/pdp",function(req,res){
+  res.render('pdp');
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -129,7 +134,6 @@ function handleMessage(sender_psid, received_message) {
                          "payload": {
                            "template_type": "generic",
                            "elements": [{
-                             "title": "Es correcta la imagen?",
                              "image_url": result.content
                            }]
                          }
