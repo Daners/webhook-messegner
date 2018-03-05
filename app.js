@@ -132,10 +132,19 @@ function handleMessage(sender_psid, received_message) {
                        "attachment": {
                          "type": "template",
                          "payload": {
-                           "template_type": "generic",
-                           "elements": [{
-                             "image_url": result.content
-                           }]
+                           "template_type": "button",
+                           "text":"Try the URL button!",
+                           "buttons":[
+                               {
+                                   "type":"web_url",
+                                   "url":"https://www.messenger.com/",
+                                   "title":"URL Button",
+                                   "webview_height_ratio": "full",
+                                   "messenger_extensions": "false",
+                                   "fallback_url": "https://www.facebook.com/"
+                               }
+                           ]
+
                          }
                        }
                      }
@@ -156,24 +165,27 @@ function handleMessage(sender_psid, received_message) {
       "attachment": {
         "type": "template",
         "payload": {
-          "template_type": "button",
-          "text":"Try the URL button!",
-          "buttons":[
+          "template_type": "generic",
+          "elements": [{
+            "title": "Es correcta la imagen?",
+            "subtitle": "Tap al boton para contestar.",
+            "image_url": attachment_url,
+            "buttons": [
               {
-                  "type":"web_url",
-                  "url":"https://www.messenger.com/",
-                  "title":"URL Button",
-                  "webview_height_ratio": "full",
-                  "messenger_extensions": "false",
-                  "fallback_url": "https://www.facebook.com/"
+                "type": "postback",
+                "title": "Si!",
+                "payload": "yes",
+              },
+              {
+                "type": "postback",
+                "title": "No!",
+                "payload": "no",
               }
-          ]
-
+            ],
+          }]
         }
       }
     }
-
-
         callSendAPI(sender_psid, response);
   }
     // Sends the response message
