@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var config = require('config');
 const recastai = require('recastai')
-var build = new recastai.build(config.get("recastTokenDev"), 'en')
+var build = new recastai.build(config.get("recastTokenDev"), 'es')
 var app = express();
 
 // view engine setup
