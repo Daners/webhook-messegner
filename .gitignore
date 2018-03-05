@@ -2,3 +2,4 @@ node_modules/
 .vscode
 CHANGELOG.md
 .idea/
+.cfignore
