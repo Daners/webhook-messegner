@@ -113,7 +113,7 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
   if (received_message.text) {
       // Create the payload for a basic text message
-    request.converseText({received_message.text, { conversationToken: sender_psid })
+    request.converseText(received_message.text, { conversationToken: sender_psid })
     .then(result   => {
        console.log('The conversation action is: ', result)
     })
