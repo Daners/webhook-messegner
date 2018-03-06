@@ -129,25 +129,24 @@ function handleMessage(sender_psid, received_message) {
                  }
                }else if(result.type === "picture"){
                      response = {
-                       "attachment": {
-                         "type": "template",
-                         "payload": {
-                           "template_type": "button",
-                           "text":"Try the URL button!",
-                           "buttons":[
-                               {
-                                   "type":"web_url",
-                                   "url":"https://www.messenger.com/",
-                                   "title":"URL Button",
-                                   "webview_height_ratio": "full",
-                                   "messenger_extensions": "false",
-                                   "fallback_url": "https://www.facebook.com/"
-                               }
-                           ]
-
-                         }
-                       }
-                     }
+                            "attachment":{
+                              "type":"template",
+                              "payload":{
+                                "template_type":"button",
+                                "text":"Try the URL button!",
+                                "buttons":[
+                                  {
+                                    "type":"web_url",
+                                    "url":"https://www.messenger.com/",
+                                    "title":"URL Button",
+                                    "webview_height_ratio": "full",
+                                    "messenger_extensions": "false",
+                                    "fallback_url": "https://www.facebook.com/"
+                                  }
+                                ]
+                              }
+                            }
+                          }
                }
 
                  callSendAPI(sender_psid, response);
