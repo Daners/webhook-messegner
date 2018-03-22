@@ -50,6 +50,7 @@ app.post('/webhook', (req, res) => {
   if (body.object === 'page') {
     // Iterates over each entry - there may be multiple if batched
     body.entry.forEach(function(entry) {
+      console.log(JSON.stringify(entry));
       // Gets the message. entry.messaging is an array, but
       // will only ever contain one message, so we get index 0
       let webhook_event = entry.messaging[0];
@@ -133,12 +134,12 @@ function handleMessage(sender_psid, received_message) {
                           "type":"template",
                             "payload":{
                               "template_type":"button",
-                              "text":"What do you want to do next?",
+                              "text":"Ahora vamos a perfilarte",
                               "buttons":[
                                 {
                                   "type":"web_url",
                                   "url":"https://www.messenger.com",
-                                  "title":"Visit Messenger"
+                                  "title":"perfilar"
                                 }
                                 ]
                               }
