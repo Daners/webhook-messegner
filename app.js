@@ -151,10 +151,10 @@ function handleMessage(sender_psid, received_message) {
 
                  callSendAPI(sender_psid, response);
 
-            }).catch(err => {
-            console.error('Error while sending message to Recast.AI', err)
-          });
-        });
+            })
+        }).catch(err => {
+        console.error('Error while sending message to Recast.AI', err)
+      });
 
   }else if (received_message.attachments) {
 
