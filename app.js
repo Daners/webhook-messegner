@@ -111,9 +111,11 @@ app.get('/test-view', function(req, res){
   let referer = req.get('Referer');
   if (referer) {
       if (referer.indexOf('www.messenger.com') >= 0) {
-          res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/ ');
+          res.set('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/ ');
+          console.log("from : www.messenger.com");
       } else if (referer.indexOf('www.facebook.com') >= 0) {
-          res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+        console.log("from : www.facebook.com");
+          res.set('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
       }
   }
      res.sendFile(path.join(__dirname+'/public/html/view-test.html'));
@@ -176,7 +178,7 @@ function handleMessage(sender_psid, received_message) {
                        "attachment":{
                           "type":"template",
                             "payload":{
-                              "template_type":"generic",
+                              "template_type":"button",
                               "text":"Ahora vamos a perfilarte",
                               "buttons":[
                                 {
