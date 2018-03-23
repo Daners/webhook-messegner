@@ -120,7 +120,7 @@ app.use(function(req, res, next) {
 const setDomainWhitelisting = () => {
   var whitelist = {
         setting_type: 'domain_whitelisting',
-        whitelisted_domains: ["https://www.messenger.com"],
+        whitelisted_domains: ["https://watson-tlmx-messenger.herokuapp.com"],
         domain_action_type: 'add',
       };
 
@@ -173,7 +173,7 @@ function handleMessage(sender_psid, received_message) {
                               "buttons":[
                                 {
                                   "type":"web_url",
-                                  "url":"https://www.messenger.com",
+                                  "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
                                   "title":"perfilar",
                                   "webview_height_ratio": 'tall'
                                 }
