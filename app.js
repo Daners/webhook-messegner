@@ -183,7 +183,8 @@ function handleMessage(sender_psid, received_message) {
                                   "type":"web_url",
                                   "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
                                   "title":"perfilar",
-                                  "webview_height_ratio": 'tall'
+                                  "webview_height_ratio": 'tall',
+                                  messenger_extensions: false
                                 }
                                 ]
                               }
