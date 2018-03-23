@@ -37,20 +37,7 @@
           }
         };
 
-        MessengerExtensions.beginShareFlow(function(share_response) {
-          // User dismissed without error, but did they share the message?
-          if(share_response.is_sent){
-            // The user actually did share.
-            // Perhaps close the window w/ requestCloseBrowser().
-            MessengerExtensions.requestCloseBrowser();
-          }
-        },
-        function(errorCode, errorMessage) {
-        // An error occurred in the process
 
-        },
-        message,
-        "broadcast");
 
        window.extAsyncInit = function() {
          // the Messenger Extensions JS SDK is done loading
@@ -59,8 +46,22 @@
            document.getElementById("uid").innerHTML =uids
            console.log(uids);
          }, function error(err) {
- document.getElementById("uid").innerHTML =err
+            document.getElementById("uid").innerHTML =err
          });
+         MessengerExtensions.beginShareFlow(function(share_response) {
+           // User dismissed without error, but did they share the message?
+           if(share_response.is_sent){
+             // The user actually did share.
+             // Perhaps close the window w/ requestCloseBrowser().
+             MessengerExtensions.requestCloseBrowser();
+           }
+         },
+         function(errorCode, errorMessage) {
+         // An error occurred in the process
+
+         },
+         message,
+         "broadcast");
        };
 
        (function(doc, script, domId){
