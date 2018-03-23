@@ -176,7 +176,7 @@ function handleMessage(sender_psid, received_message) {
                        "attachment":{
                           "type":"template",
                             "payload":{
-                              "template_type":"button",
+                              "template_type":"generic",
                               "text":"Ahora vamos a perfilarte",
                               "buttons":[
                                 {
@@ -184,7 +184,7 @@ function handleMessage(sender_psid, received_message) {
                                   "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
                                   "title":"perfilar",
                                   "webview_height_ratio": 'tall',
-                                  messenger_extensions: false
+                                  "messenger_extensions": true
                                 }
                                 ]
                               }
