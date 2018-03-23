@@ -108,6 +108,14 @@ app.get("/pdp",function(req,res){
 });
 
 app.get('/test-view', function(req, res){
+  let referer = req.get('Referer');
+  if (referer) {
+      if (referer.ondexOf('www.messenger.com')> = 0) {
+          res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/ ');
+      } else if (referer.indexOf('www.facebook.com')> = 0) {
+          res.setHeader('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+      }
+  }
      res.sendFile(path.join(__dirname+'/public/html/view-test.html'));
 });
 // catch 404 and forward to error handler
