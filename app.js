@@ -106,6 +106,10 @@ app.get('/webhook', (req, res) => {
 app.get("/pdp",function(req,res){
   res.render('pdp');
 });
+
+app.get('/test-view', function(req, res){
+     res.sendFile(path.join(__dirname+'/public/html/view-test.html'));
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
