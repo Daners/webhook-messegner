@@ -35,13 +35,6 @@
               console.log(err);
             });
 
-         MessengerExtensions.getUserID(function success(uids) {
-           document.getElementById("uid").innerHTML =uids
-           console.log(uids);
-         }, function error(err) {
-            document.getElementById("uid").innerHTML ="error: "+err
-         });
-
        };
 
        (function(doc, script, domId){
