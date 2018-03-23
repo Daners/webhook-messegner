@@ -141,7 +141,7 @@ function handleMessage(sender_psid, received_message) {
                                   "url":"https://www.messenger.com",
                                   "title":"perfilar",
                                   "webview_height_ratio": 'tall',
-                                  "messenger_extensions": true,
+                                  "messenger_extensions": true
                                 }
                                 ]
                               }
