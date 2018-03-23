@@ -5,42 +5,24 @@
       <title>VB Cream</title>
 
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
-    <script src="javascripts/bundle.js"></script>
-
-    <!-- Facebook Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-     fbq('init', '1147638688715677');
-    fbq('track', 'PageView');
-    </script>
-    <noscript>
-     <img height="1" width="1"
-    src="https://www.facebook.com/tr?id=1147638688715677&ev=PageView
-    &noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
 
   </head>
   <body>
-    <div id="content"></div>
+    <div id="content">
+
+        <h1>Hola vista web</h1>
+        <span id="uid"></span>
+    </div>
     <script>
-
-     const gift = JSON.parse('{"id":"moisturizers-kara","name":"VB Cream","images":{"original":"https://victoria-belle.herokuapp.com/media/moisturizers/kara-new.jpg","square":"https://victoria-belle.herokuapp.com/media/moisturizers/kara-square.jpg"},"description":"A light, non-greasy formula, providing effective and refreshing hydration.","category":"moisturizer","price":1.59}');
-
 
        window.extAsyncInit = function() {
          // the Messenger Extensions JS SDK is done loading
          MessengerExtensions.getUserID(function success(uids) {
-           window.attachApp(uids.psid, gift);
+
+           document.getElementById("uid").innerHTML =uids
+           console.log(uids);
          }, function error(err) {
-           window.attachApp();
+
          });
        };
 
