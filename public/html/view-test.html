@@ -11,8 +11,9 @@
     <div id="content">
 
         <h1>Hola vista web</h1>
-        <span id="uid">que cosa</span>
-        <span id="psid">que cosa</span>
+        <span id="uid">uid</span>
+        <p>
+        <span id="psid">psid</span>
     </div>
     <script>
 
@@ -23,7 +24,7 @@
               if (features.indexOf("context") != -1) {
                 MessengerExtensions.getContext('2106254336275881',
                   function success(thread_context) {
-                    document.getElementById("psid").value = thread_context.psid;
+                    document.getElementById("psid").innerHTML = thread_context.psid;
                   },
                   function error(err) {
                     console.log(err);
@@ -38,7 +39,7 @@
            document.getElementById("uid").innerHTML =uids
            console.log(uids);
          }, function error(err) {
-            document.getElementById("uid").innerHTML =err
+            document.getElementById("uid").innerHTML ="error: "+err
          });
 
        };
