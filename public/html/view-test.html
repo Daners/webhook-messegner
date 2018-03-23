@@ -12,56 +12,35 @@
 
         <h1>Hola vista web</h1>
         <span id="uid">que cosa</span>
+        <span id="psid">que cosa</span>
     </div>
     <script>
-    var message = {
-          "attachment":{
-            "type":"template",
-            "payload":{
-              "template_type":"generic",
-              "elements": [{
-                "title":"I took Peter's 'Which Hat Are You?' Quiz",
-                "image_url": "https://bot.peters-hats.com/img/hats/fez.jpg",
-                "subtitle": "My result: Fez",
-                "default_action":{
-                  "type":"web_url",
-                  "url": "https://bot.peters-hats.com/view_quiz_results.php?user=24601"
-                },
-                "buttons":[{
-                  "type":"web_url",
-                  "url":"https://bot.peters-hats.com/hatquiz.php?referer=24601",
-                  "title":"Take the Quiz"
-                }]
-              }]
-            }
-          }
-        };
-
-
 
        window.extAsyncInit = function() {
-         // the Messenger Extensions JS SDK is done loading
-         MessengerExtensions.getUserID(function success(uids) {
 
+         MessengerExtensions.getSupportedFeatures(function success(result) {
+              let features = result.supported_features;
+              if (features.indexOf("context") != -1) {
+                MessengerExtensions.getContext('2106254336275881',
+                  function success(thread_context) {
+                    document.getElementById("psid").value = thread_context.psid;
+                  },
+                  function error(err) {
+                    console.log(err);
+                  }
+                );
+              }
+            }, function error(err) {
+              console.log(err);
+            });
+
+         MessengerExtensions.getUserID(function success(uids) {
            document.getElementById("uid").innerHTML =uids
            console.log(uids);
          }, function error(err) {
             document.getElementById("uid").innerHTML =err
          });
-         MessengerExtensions.beginShareFlow(function(share_response) {
-           // User dismissed without error, but did they share the message?
-           if(share_response.is_sent){
-             // The user actually did share.
-             // Perhaps close the window w/ requestCloseBrowser().
-             MessengerExtensions.requestCloseBrowser();
-           }
-         },
-         function(errorCode, errorMessage) {
-         // An error occurred in the process
 
-         },
-         message,
-         "broadcast");
        };
 
        (function(doc, script, domId){
