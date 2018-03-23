@@ -113,6 +113,37 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+const setDomainWhitelisting = () => {
+  var whitelist = {
+        setting_type: 'domain_whitelisting',
+        whitelisted_domains: ["https://www.messenger.com"],
+        domain_action_type: 'add',
+      };
+
+  var queryparams =  {
+        fields: 'whitelisted_domains',
+      };
+
+     const query = Object.assign({access_token: PAGE_ACCESS_TOKEN}, queryparams);
+
+    request({
+      "uri": "https://graph.facebook.com/v2.6/me/messages",
+      "qs": query,
+      "method": "POST",
+      "json": whitelist
+    }, (err, res, body) => {
+      if (!err) {
+        console.log('message sent!')
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    });
+
+};
+
+
+setDomainWhitelisting();
+
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -235,6 +266,8 @@ function callSendAPI(sender_psid, response) {
     }
   });
 }
+
+
 
 
 module.exports = app;
