@@ -124,7 +124,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-// 
+//
 // const setDomainWhitelisting = () => {
 //   var whitelist = {
 //         setting_type: 'domain_whitelisting',
@@ -183,8 +183,7 @@ function handleMessage(sender_psid, received_message) {
                                   "type":"web_url",
                                   "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
                                   "title":"perfilar",
-                                  "webview_height_ratio": 'tall',
-                                  in_test :true
+                                  "webview_height_ratio": 'tall'
                                 }
                                 ]
                               }
