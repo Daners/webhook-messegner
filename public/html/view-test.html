@@ -18,6 +18,30 @@
 
 
 function shareFlow(){
+  var message = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "Es correcta la imagen?",
+          "subtitle": "Tap al boton para contestar.",
+          "buttons": [
+            {
+              "type": "postback",
+              "title": "Si!",
+              "payload": "yes",
+            },
+            {
+              "type": "postback",
+              "title": "No!",
+              "payload": "no",
+            }
+          ],
+        }]
+      }
+    }
+  }
   MessengerExtensions.beginShareFlow(function(share_response) {
     if(share_response.is_sent){
       window.MessengerExtensions.requestCloseBrowser(null, null);
@@ -32,30 +56,7 @@ function shareFlow(){
 
        window.extAsyncInit = function() {
 
-         let message = {
-           "attachment": {
-             "type": "template",
-             "payload": {
-               "template_type": "generic",
-               "elements": [{
-                 "title": "Es correcta la imagen?",
-                 "subtitle": "Tap al boton para contestar.",
-                 "buttons": [
-                   {
-                     "type": "postback",
-                     "title": "Si!",
-                     "payload": "yes",
-                   },
-                   {
-                     "type": "postback",
-                     "title": "No!",
-                     "payload": "no",
-                   }
-                 ],
-               }]
-             }
-           }
-         }
+
 
 
 
