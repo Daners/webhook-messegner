@@ -207,6 +207,11 @@ function handleMessage(sender_psid, received_message) {
 
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
+    if(received_message.attachments[0].payload.coordinates){
+      response = {
+           "text": "Gracias, en tu ubicacion contamos con fibra :)"
+      }
+    }else{
     response = {
       "attachment": {
         "type": "template",
@@ -232,6 +237,7 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
+  }
         callSendAPI(sender_psid, response);
   }
     // Sends the response message
