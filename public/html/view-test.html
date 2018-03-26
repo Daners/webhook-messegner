@@ -12,8 +12,22 @@
 
         <h1>Hola vista web</h1>
         <span id="psid">psid</span>
+        <button type="button" name="button" onclick="shareFlow()"></button>
     </div>
     <script>
+
+
+function shareFlow(){
+  MessengerExtensions.beginShareFlow(function(share_response) {
+    if(share_response.is_sent){
+      window.MessengerExtensions.requestCloseBrowser(null, null);
+    }
+  },
+  function(errorCode, errorMessage) {
+  },
+  message,
+  "broadcast");
+}
 
        window.extAsyncInit = function() {
 
@@ -42,19 +56,7 @@
            }
          }
 
-            MessengerExtensions.beginShareFlow(function(share_response) {
-              // User dismissed without error, but did they share the message?
-              if(share_response.is_sent){
-                // The user actually did share.
-                // Perhaps close the window w/ requestCloseBrowser().
-              }
-            },
-            function(errorCode, errorMessage) {
-            // An error occurred in the process
 
-            },
-            message,
-            "broadcast");
 
          MessengerExtensions.getSupportedFeatures(function success(result) {
               let features = result.supported_features;
