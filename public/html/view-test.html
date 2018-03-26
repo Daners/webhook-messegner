@@ -19,28 +19,24 @@
 
 function shareFlow(){
   var message = {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": [{
-          "title": "Es correcta la imagen?",
-          "subtitle": "Tap al boton para contestar.",
-          "buttons": [
+    "attachment":{
+       "type":"template",
+       "payload":{
+         "template_type":"open_graph",
+         "elements":[
             {
-              "type":"web_url",
-                  "url":"https://petersfancybrownhats.com",
-                  "title":"View Website",
-            },
-            {
-              "type":"web_url",
-                "url":"https://petersfancybrownhats.com",
-                "title":"View Website 2",
-            }
-          ],
-        }]
-      }
-    }
+             "url":"https://open.spotify.com/track/7GhIk7Il098yCjg4BQjzvb",
+             "buttons":[
+               {
+                 "type":"web_url",
+                 "url":"https://en.wikipedia.org/wiki/Rickrolling",
+                 "title":"View More"
+               }
+             ]
+           }
+         ]
+       }
+     }
   }
   MessengerExtensions.beginShareFlow(function(share_response) {
     if(share_response.is_sent){
