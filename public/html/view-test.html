@@ -12,7 +12,7 @@
 
         <h1>Hola vista web</h1>
         <span id="psid">psid</span>
-        <button type="button" name="button" onclick="shareFlow()"></button>
+        <button type="button" name="button" onclick="shareFlow()">Send</button>
     </div>
     <script>
 
@@ -24,6 +24,7 @@ function shareFlow(){
     }
   },
   function(errorCode, errorMessage) {
+    console.log(errorMessage);
   },
   message,
   "broadcast");
