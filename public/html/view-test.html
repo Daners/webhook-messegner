@@ -203,9 +203,9 @@ function shareFlow(){
 
 function sendMessage(){
 
-  var elements = $("#formData").elements;
+  var elements = $(this).parent().closest('form')[0].elements;
     var form_content = {}
-  for (var i = 0, element; element = elements[i++];) {
+    for (var i = 0, element; element = elements[i++];) {
     if (element.type != 'button') {
 
       if ((element.type == 'checkbox' || element.type == 'radio')) {
@@ -231,10 +231,6 @@ function sendMessage(){
 }
 
        window.extAsyncInit = function() {
-
-
-
-
 
          MessengerExtensions.getSupportedFeatures(function success(result) {
               let features = result.supported_features;
