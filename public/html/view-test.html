@@ -229,7 +229,13 @@ function sendMessage(){
   var psid = $("#psid").val();
     if(psid){
       form_content.psid = psid;
-     $.post('https://watson-tlmx-messenger.herokuapp.com/data', form_content)
+     $.post('https://watson-tlmx-messenger.herokuapp.com/data', form_content).done(function(){
+               MessengerExtensions.requestCloseBrowser(function success() {
+                      // webview closed
+                    }, function error(err) {
+                      // an error occurred
+                    });
+     })
    }
 }
 

@@ -114,7 +114,7 @@ app.post("/data",function(req,res){
   var   response = { "text": "Gracias!"+psid }
 
     callSendAPI(psid, response);
-
+res.sendStatus(200)
 })
 
 app.get('/test-view', function(req, res){
