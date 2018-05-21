@@ -110,6 +110,7 @@ app.get("/pdp",function(req,res){
 app.post("/data",function(req,res){
 
   let psid = req.body.psid;
+  console.log(req.body);
 
   var   response = { "text": "Gracias!"+psid }
 
