@@ -203,7 +203,7 @@ function shareFlow(){
 
 function sendMessage(){
 
-  var elements = $(this).parent().closest('form')[0].elements;
+  var elements =document.getElementById('formData').elements;
     var form_content = {}
     for (var i = 0, element; element = elements[i++];) {
     if (element.type != 'button') {
