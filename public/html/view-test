@@ -397,41 +397,41 @@ select::-ms-expand {
     <script>
 
 
-function shareFlow(){
-  var message = {
-    "attachment":{
-       "type":"template",
-       "payload":{
-         "template_type":"generic",
-         "elements":[
-            {
-             "title":"Welcome!",
-             "image_url":"https://petersfancybrownhats.com/company_image.png",
-             "subtitle":"We have the right hat for everyone.",
-
-             "buttons":[
-               {
-                 "type":"web_url",
-                 "url":"https://petersfancybrownhats.com",
-                 "title":"View Website"
-               }
-             ]
-           }
-         ]
-       }
-     }
-  }
-  MessengerExtensions.beginShareFlow(function(share_response) {
-    if(share_response.is_sent){
-      window.MessengerExtensions.requestCloseBrowser(null, null);
-    }
-  },
-  function(errorCode, errorMessage) {
-    console.log(errorMessage);
-  },
-  message,
-  "broadcast");
-}
+// function shareFlow(){
+//   var message = {
+//     "attachment":{
+//        "type":"template",
+//        "payload":{
+//          "template_type":"generic",
+//          "elements":[
+//             {
+//              "title":"Welcome!",
+//              "image_url":"https://petersfancybrownhats.com/company_image.png",
+//              "subtitle":"We have the right hat for everyone.",
+//
+//              "buttons":[
+//                {
+//                  "type":"web_url",
+//                  "url":"https://petersfancybrownhats.com",
+//                  "title":"View Website"
+//                }
+//              ]
+//            }
+//          ]
+//        }
+//      }
+//   }
+//   MessengerExtensions.beginShareFlow(function(share_response) {
+//     if(share_response.is_sent){
+//       window.MessengerExtensions.requestCloseBrowser(null, null);
+//     }
+//   },
+//   function(errorCode, errorMessage) {
+//     console.log(errorMessage);
+//   },
+//   message,
+//   "broadcast");
+// }
 
 
 function sendMessage(){
