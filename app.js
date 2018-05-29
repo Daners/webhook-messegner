@@ -129,6 +129,7 @@ app.get('/test-view', function(req, res){
           res.set('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
       }
   }
+    res.set('Content-Type', 'text/html');
      res.sendFile(path.join(__dirname+'/public/html/view-test'));
 });
 // catch 404 and forward to error handler
