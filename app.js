@@ -177,27 +177,37 @@ function handleMessage(sender_psid, received_message) {
     console.log(received_message.text);
     if(received_message.text && received_message.text == "test-list"){
 
-      response = {
-         "attachment": {
-           "type": "template",
-           "payload": {
-              "template_type": "media",
-              "elements": [
+      response = "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
                  {
-                    "media_type": "image",
-                    "url": "https://watson-tlmx-messenger.herokuapp.com/images/imgae1.png",
-                    "buttons": [
-                        {
-                          "title": "Router",
-                          "type": "postback",
-                          "payload": "imagen1"
-                        }
-                      ]
-                 }
+                  "title":"Welcome!",
+                  "image_url":"https://petersfancybrownhats.com/company_image.png",
+                  "subtitle":"We have the right hat for everyone.",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://petersfancybrownhats.com/view?item=103",
+                    "messenger_extensions": false,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://petersfancybrownhats.com/"
+                  },
+                  "buttons":[
+                    {
+                      "type":"web_url",
+                      "url":"https://petersfancybrownhats.com",
+                      "title":"View Website"
+                    },{
+                      "type":"postback",
+                      "title":"Start Chatting",
+                      "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                    }
+                  ]
+                }
               ]
-           }
-         }
-       }
+            }
+          }
 
       callSendAPI(sender_psid, response);
       return true;
