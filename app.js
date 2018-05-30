@@ -174,6 +174,33 @@ app.use(function(req, res, next) {
 function handleMessage(sender_psid, received_message) {
   let response;
     // Check if the message contains text
+    //
+    if(received_message.text && received_message.text == "test-list"){
+      response = {
+         "attachment": {
+           "type": "template",
+           "payload": {
+              "template_type": "media",
+              "elements": [
+                 {
+                    "media_type": "image",
+                    "url": "https://cdn.20m.es/img2/recortes/2016/12/10/388341-600-338.jpg",
+                    "buttons": [
+                        {
+                          "title": "Router",
+                          "type": "postback",
+                          "payload": "imagen1"
+                        }
+                      ]
+                 }
+              ]
+           }
+         }
+       }
+
+      callSendAPI(sender_psid, response);
+      return true;
+    }
   if (received_message.text) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
