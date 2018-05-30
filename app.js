@@ -177,7 +177,8 @@ function handleMessage(sender_psid, received_message) {
     console.log(received_message.text);
     if(received_message.text && received_message.text == "test-list"){
 
-      response = "attachment":{
+      response = {
+        "attachment":{
             "type":"template",
             "payload":{
               "template_type":"generic",
@@ -208,6 +209,7 @@ function handleMessage(sender_psid, received_message) {
               ]
             }
           }
+        }
 
       callSendAPI(sender_psid, response);
       return true;
