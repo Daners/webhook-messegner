@@ -178,26 +178,8 @@ function handleMessage(sender_psid, received_message) {
     if(received_message.text && received_message.text == "test-list"){
 
       response = {
-         "attachment": {
-           "type": "template",
-           "payload": {
-              "template_type": "media",
-              "elements": [
-                 {
-                    "media_type": "image",
-                    "url": "https://cdn.20m.es/img2/recortes/2016/12/10/388341-600-338.jpg",
-                    "buttons": [
-                        {
-                          "title": "Router",
-                          "type": "postback",
-                          "payload": "imagen1"
-                        }
-                      ]
-                 }
-              ]
-           }
-         }
-       }
+        "text":"HOLAAAAA"
+      }
 
       callSendAPI(sender_psid, response);
       return true;
