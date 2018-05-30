@@ -174,8 +174,9 @@ app.use(function(req, res, next) {
 function handleMessage(sender_psid, received_message) {
   let response;
     // Check if the message contains text
-    //
+    console.log(received_message.text);
     if(received_message.text && received_message.text == "test-list"){
+
       response = {
          "attachment": {
            "type": "template",
