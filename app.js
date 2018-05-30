@@ -178,8 +178,26 @@ function handleMessage(sender_psid, received_message) {
     if(received_message.text && received_message.text == "test-list"){
 
       response = {
-        "text":"HOLAAAAA"
-      }
+         "attachment": {
+           "type": "template",
+           "payload": {
+              "template_type": "media",
+              "elements": [
+                 {
+                    "media_type": "image",
+                    "url": "https://watson-tlmx-messenger.herokuapp.com/images/imgae1.png",
+                    "buttons": [
+                        {
+                          "title": "Router",
+                          "type": "postback",
+                          "payload": "imagen1"
+                        }
+                      ]
+                 }
+              ]
+           }
+         }
+       }
 
       callSendAPI(sender_psid, response);
       return true;
