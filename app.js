@@ -182,8 +182,8 @@ function handleMessage(sender_psid, received_message) {
           "payload": {
             "template_type": "generic",
             "elements": [{
-              "title": "Es correcta la imagen?",
-              "image_url": "https://watson-tlmx-messenger.herokuapp.com/images/husky.jpg"
+              "title": "Imagen",
+              "image_url": "https://watson-tlmx-messenger.herokuapp.com/images/tiger.png"
             }]
           }
         }
