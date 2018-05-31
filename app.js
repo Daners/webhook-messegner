@@ -175,6 +175,22 @@ function handleMessage(sender_psid, received_message) {
   let response;
     // Check if the message contains text
     console.log(received_message.text);
+    if(received_message.text && received_message.text == "test-image"){
+      response = {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [{
+              "title": "Es correcta la imagen?",
+              "subtitle": "Tap al boton para contestar.",
+              "image_url": "https://watson-tlmx-messenger.herokuapp.com/images/husky.jpg"
+            }]
+          }
+        }
+      }
+
+    }
     if(received_message.text && received_message.text == "test-list"){
 
       response = {
