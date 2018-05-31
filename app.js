@@ -183,7 +183,7 @@ function handleMessage(sender_psid, received_message) {
             "template_type": "generic",
             "elements": [{
               "title": "Imagen",
-              "image_url": "https://watson-tlmx-messenger.herokuapp.com/images/tiger.png"
+              "image_url": "https://www.loboswiki.com/Imagenes/guia-de-los-lobos.jpg"
             }]
           }
         }
