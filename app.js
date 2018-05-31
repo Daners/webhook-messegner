@@ -190,6 +190,9 @@ function handleMessage(sender_psid, received_message) {
         }
       }
 
+      callSendAPI(sender_psid, response);
+      return true;
+
     }
     if(received_message.text && received_message.text == "test-list"){
 
