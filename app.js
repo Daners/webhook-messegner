@@ -220,6 +220,32 @@ function handleMessage(sender_psid, received_message) {
       return true;
 
     }
+    if(received_message.text && received_message.text == "link"){
+      response = {
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"button",
+              "text":"Telmex.com",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://www.messenger.com/",
+                  "title":"URL Button",
+                  "webview_height_ratio": "full",
+                  "messenger_extensions": "false"
+                }
+              ]
+            }
+          }
+        }
+
+
+      callSendAPI(sender_psid, response);
+      return true;
+
+    }
+
     if(received_message.text && received_message.text == "test-video"){
       response ={
         "attachment": {
