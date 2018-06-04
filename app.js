@@ -200,7 +200,7 @@ function handleMessage(sender_psid, received_message) {
           "payload": {
             "template_type": "media",
             "elements": [{
-               "media_type": "<image|video>",
+               "media_type": "video",
               "url": "https://www.w3schools.com/html/mov_bbb.mp4"
             }]
           }
