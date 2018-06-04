@@ -193,14 +193,33 @@ function handleMessage(sender_psid, received_message) {
       return true;
 
     }
+    if(received_message.text && received_message.text == "opg"){
+      response = {
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"open_graph",
+              "elements":[
+                 {
+                  "url":"http://telmex.com/web/negocios",
+
+                }
+              ]
+            }
+          }
+        }
+
+
+      callSendAPI(sender_psid, response);
+      return true;
+
+    }
     if(received_message.text && received_message.text == "test-video"){
       response ={
         "attachment": {
           "type": "video",
           "payload": {
-
               "url": "https://www.w3schools.com/html/mov_bbb.mp4"
-
           }
         }
       }
