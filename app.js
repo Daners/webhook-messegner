@@ -201,7 +201,7 @@ function handleMessage(sender_psid, received_message) {
               "template_type":"open_graph",
               "elements":[
                  {
-                  "url":"http://telmex.com/web/negocios",
+                  "url":"http://ogp.me/",
                   "buttons":[
                     {
                       "type":"web_url",
