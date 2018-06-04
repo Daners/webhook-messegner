@@ -196,13 +196,11 @@ function handleMessage(sender_psid, received_message) {
     if(received_message.text && received_message.text == "test-video"){
       response ={
         "attachment": {
-          "type": "template",
+          "type": "video",
           "payload": {
-            "template_type": "generic",
-            "elements": [{
-              "title": "Imagen",
-              "image_url": "https://www.w3schools.com/html/mov_bbb.mp4"
-            }]
+
+              "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+
           }
         }
       }
