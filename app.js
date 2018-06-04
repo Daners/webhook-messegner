@@ -193,6 +193,24 @@ function handleMessage(sender_psid, received_message) {
       return true;
 
     }
+    if(received_message.text && received_message.text == "test-video"){
+      response = {
+        "attachment": {
+          "type": "template",
+          "payload": {
+            "template_type": "generic",
+            "elements": [{
+              "title": "video",
+              "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+            }]
+          }
+        }
+      }
+
+      callSendAPI(sender_psid, response);
+      return true;
+
+    }
     if(received_message.text && received_message.text == "test-list"){
 
       response = {
