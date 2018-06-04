@@ -198,9 +198,9 @@ function handleMessage(sender_psid, received_message) {
         "attachment": {
           "type": "template",
           "payload": {
-            "template_type": "generic",
+            "template_type": "media",
             "elements": [{
-              "title": "video",
+               "media_type": "<image|video>",
               "url": "https://www.w3schools.com/html/mov_bbb.mp4"
             }]
           }
