@@ -226,12 +226,12 @@ function handleMessage(sender_psid, received_message) {
             "type":"template",
             "payload":{
               "template_type":"button",
-              "text":"Telmex.com",
+              "text":"Accesa a la siguiente liga para mas informacion",
               "buttons":[
                 {
                   "type":"web_url",
-                  "url":"https://www.messenger.com/",
-                  "title":"URL Button",
+                  "url":"http://telmex.com/web/negocios",
+                  "title":"telmex",
                   "webview_height_ratio": "full",
                   "messenger_extensions": "false"
                 }
