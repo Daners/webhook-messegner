@@ -306,8 +306,7 @@ function handleMessage(sender_psid, received_message) {
           "attachment": {
             "type": "template",
             "payload": {
-              "template_type": "list",
-              "top_element_style": "compact",
+              "template_type": "generic",
               "elements": [{
                 "title": "Es correcta la imagen?",
                 "subtitle": "Tap al boton para contestar.",
