@@ -330,6 +330,11 @@ function handleMessage(sender_psid, received_message) {
                     "payload": "yes",
                   }
                 ],
+              },{
+                "type": "video",
+                "payload": {
+                    "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+                }
               }
               ]
             }
