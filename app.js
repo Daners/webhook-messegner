@@ -308,33 +308,15 @@ function handleMessage(sender_psid, received_message) {
             "payload": {
               "template_type": "generic",
               "elements": [{
-                "title": "Es correcta la imagen?",
-                "subtitle": "Tap al boton para contestar.",
-                "image_url": "https://watson-tlmx-messenger.herokuapp.com/images/imgae1.png",
-                "buttons": [
-                  {
-                    "type": "postback",
-                    "title": "Si!",
-                    "payload": "yes",
+                    "title":"<TITLE_TEXT>",
+                    "image_url":"https://watson-tlmx-messenger.herokuapp.com/images/imgae2.png",
+                    "subtitle":"<SUBTITLE_TEXT>",
+                    "default_action": {{
+                      "type": "video",
+                      "payload": {
+                          "url": "https://www.w3schools.com/html/mov_bbb.mp4"
+                      }
                   }
-                ],
-              },{
-                "title": "Es correcta la imagen?",
-                "subtitle": "Tap al boton para contestar.",
-                "image_url": "https://watson-tlmx-messenger.herokuapp.com/images/imgae1.png",
-                "buttons": [
-                  {
-                    "type": "postback",
-                    "title": "Si!",
-                    "payload": "yes",
-                  }
-                ],
-              },{
-                "type": "video",
-                "payload": {
-                    "url": "https://www.w3schools.com/html/mov_bbb.mp4"
-                }
-              }
               ]
             }
           }
