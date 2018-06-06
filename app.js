@@ -311,12 +311,13 @@ function handleMessage(sender_psid, received_message) {
                     "title":"<TITLE_TEXT>",
                     "image_url":"https://watson-tlmx-messenger.herokuapp.com/images/imgae2.png",
                     "subtitle":"<SUBTITLE_TEXT>",
-                    "default_action": {{
+                    "default_action": {
                       "type": "video",
                       "payload": {
                           "url": "https://www.w3schools.com/html/mov_bbb.mp4"
                       }
                   }
+                }
               ]
             }
           }
