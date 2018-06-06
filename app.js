@@ -309,8 +309,6 @@ function handleMessage(sender_psid, received_message) {
               "template_type": "generic",
               "elements": [{
                     "title":"<TITLE_TEXT>",
-                    "image_url":"https://watson-tlmx-messenger.herokuapp.com/images/imgae2.png",
-                    "subtitle":"<SUBTITLE_TEXT>",
                     "default_action": {
                       "type": "web_url",
                       "url": "https://www.w3schools.com/html/mov_bbb.mp4"
