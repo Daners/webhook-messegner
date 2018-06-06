@@ -184,6 +184,9 @@ function handleMessage(sender_psid, received_message) {
             "elements": [{
               "title": "Imagen",
               "image_url": "https://www.loboswiki.com/Imagenes/guia-de-los-lobos.jpg"
+            },{
+              "title": "Imagen",
+              "image_url": "https://www.loboswiki.com/Imagenes/guia-de-los-lobos.jpg"
             }]
           }
         }
