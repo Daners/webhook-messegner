@@ -344,7 +344,7 @@ function handleMessage(sender_psid, received_message) {
               "json": attch
             }, (err, res, body) => {
               if (!err) {
-                console.log(body);
+                console.log(JSON.stringify(body,null,2));
                 callSendAPI(sender_psid, body);
               } else {
                 console.error("Unable to send message:" + err);
