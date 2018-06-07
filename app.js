@@ -337,7 +337,12 @@ function handleMessage(sender_psid, received_message) {
           if (res.conversation.memory && res.conversation.memory.attachment) {
             var  attch = res.conversation.memory.attachment
             attch.channelId = "messenger";
-            attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
+            attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
+            var msg =  res.messages[0];
+            if(msg){
+              result.content
+              attch.payload.text = msg.content
+            }
             request({
               "uri": "https://interpreter-builder.herokuapp.com/interpreter",
               "method": "POST",
