@@ -359,14 +359,14 @@ function handleMessage(sender_psid, received_message) {
                               }
                               }
                           }
-               }else if (res.memory && res.memory.attachment) {
+               }else if (result.memory && result.memory.attachment) {
 
-                 res.memory.attachment.channelId = "messenger";
-                 res.memory.attachment.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
+                 result.memory.attachment.channelId = "messenger";
+                 result.memory.attachment.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
                  request({
                    "uri": "https://interpreter-builder.herokuapp.com/interpreter",
                    "method": "POST",
-                   "json": res.memory.attachment
+                   "json": result.memory.attachment
                  }, (err, res, body) => {
                    if (!err) {
                      console.log(body);
