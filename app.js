@@ -333,7 +333,7 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
-          console.log(res.memory);
+          console.log(res);
           if (res.memory && res.memory.attachment) {
 
             res.memory.attachment.channelId = "messenger";
