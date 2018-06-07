@@ -297,7 +297,6 @@ function handleMessage(sender_psid, received_message) {
           "type": "template",
           "payload": {
             "template_type": "generic",
-            "text":"hola",
             "elements": [{
               "title": "Es correcta la imagen?",
               "subtitle": "Tap al boton para contestar.",
@@ -377,7 +376,9 @@ function handleMessage(sender_psid, received_message) {
                     }
                     let body = interpreter.build(attch,channel);
                     if(msg){
-                      body.attachment.payload.text = msg.content
+                      if(body.attachment.payload.hasOwnProperty("text")){
+                        body.attachment.payload.text = msg.content
+                      }
                     }
                     console.log(JSON.stringify(body,null,2));
                       callSendAPI(sender_psid, body);
@@ -396,7 +397,9 @@ function handleMessage(sender_psid, received_message) {
                 }, (err, res, body) => {
                   if (!err) {
                     if(msg){
-                      body.attachment.payload.text = msg.content
+                      if(body.attachment.payload.hasOwnProperty("text")){
+                        body.attachment.payload.text = msg.content
+                      }
                     }
                     console.log(JSON.stringify(body,null,2));
                     callSendAPI(sender_psid, body);
