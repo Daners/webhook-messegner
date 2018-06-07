@@ -360,7 +360,7 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
-          console.log(res.conversation.memory);
+          console.log(res);
           if (res.conversation.memory && res.conversation.memory.attachment) {
 
                 var attch = res.conversation.memory.attachment;
@@ -376,8 +376,9 @@ function handleMessage(sender_psid, received_message) {
                     }
                     let body = interpreter.build(attch,channel);
                     if(msg){
-                      body.attachment.payload.text = msg.content7
+                      body.attachment.payload.text = msg.content
                     }
+                    console.log(JSON.stringify(body,null,2));
                       callSendAPI(sender_psid, body);
                     return true;
 
