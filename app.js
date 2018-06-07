@@ -363,7 +363,8 @@ function handleMessage(sender_psid, received_message) {
           console.log(res.conversation.memory);
           if (res.conversation.memory && res.conversation.memory.attachment) {
 
-              var  attch = res.conversation.memory.attachment;
+                var attch = res.conversation.memory.attachment;
+                var msg =  res.messages[0];
 
                   if(attch.instance){
                     console.log("Interprete instance");
@@ -377,12 +378,12 @@ function handleMessage(sender_psid, received_message) {
                       body.attachment.payload.text = msg.content
                       callSendAPI(sender_psid, body);
                     return true;
+                    
                   }else{
 
+                  attch.channelId = "messenger";
+                  attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
 
-                attch.channelId = "messenger";
-                attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
-                var msg =  res.messages[0];
 
                 request({
                   "uri": "https://interpreter-builder.herokuapp.com/interpreter",
