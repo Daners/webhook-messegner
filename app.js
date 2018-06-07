@@ -29,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-   res.setHeader('Access-Control-Allow-Origin', '*');
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
@@ -38,6 +37,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+app.use(fucntion(req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', "*");
+   next();
+})
 const PAGE_ACCESS_TOKEN = config.get("pageToken");
 const VERIFY_TOKEN = config.get("verifyToken");
 
