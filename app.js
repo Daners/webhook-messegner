@@ -339,15 +339,16 @@ function handleMessage(sender_psid, received_message) {
             attch.channelId = "messenger";
             attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
             var msg =  res.messages[0];
-            if(msg){
-              attch.payload.text = msg.content
-            }
+
             request({
               "uri": "https://interpreter-builder.herokuapp.com/interpreter",
               "method": "POST",
               "json": attch
             }, (err, res, body) => {
               if (!err) {
+                if(msg){
+                  body.attachment.payload.text = msg.content
+                }
                 console.log(JSON.stringify(body,null,2));
                 callSendAPI(sender_psid, body);
               } else {
