@@ -297,6 +297,7 @@ function handleMessage(sender_psid, received_message) {
           "type": "template",
           "payload": {
             "template_type": "generic",
+            "text":"hola",
             "elements": [{
               "title": "Es correcta la imagen?",
               "subtitle": "Tap al boton para contestar.",
