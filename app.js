@@ -335,7 +335,7 @@ function handleMessage(sender_psid, received_message) {
         .then(res   => {
 
            res.messages.forEach(result => {
-             console.log(result.memory);
+             console.log(result);
                if(result.type === "text"){
                  response = {
                    "text": result.content
