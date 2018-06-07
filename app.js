@@ -396,9 +396,10 @@ function handleMessage(sender_psid, received_message) {
                   "method": "POST",
                   "json": attch
                 }, (err, res, body) => {
+                    console.log(body);
                   if (!err) {
                     if(msg){
-                      if(body.attachment.payload.hasOwnProperty("text")){
+                      if(body&&body.attachment.payload.hasOwnProperty("text")){
                         body.attachment.payload.text = msg.content
                       }
                     }
