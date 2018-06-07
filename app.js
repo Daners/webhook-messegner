@@ -377,7 +377,7 @@ function handleMessage(sender_psid, received_message) {
                     let body = interpreter.build(attch,channel);
                     console.log(body);
                     if(msg){
-                      ifbody&&(body.attachment.payload.hasOwnProperty("text")){
+                      if(body&&(body.attachment.payload.hasOwnProperty("text")){
                         body.attachment.payload.text = msg.content
                       }
                     }
