@@ -333,9 +333,9 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
-           console.log('The conversation action is: ', res);
 
            res.messages.forEach(result => {
+             console.log(result.memory);
                if(result.type === "text"){
                  response = {
                    "text": result.content
