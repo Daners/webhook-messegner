@@ -9,9 +9,12 @@ const request = require('request');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var config = require('config');
+var Interprete = require("Interprete");
 const recastai = require('recastai')
 var build = new recastai.build(config.get("recastTokenDev"), 'es')
 var app = express();
+
+var Interpreter =  new Interprete();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -137,6 +140,24 @@ app.get('/test-view', function(req, res){
   }
     res.set('Content-Type', 'text/html');
      res.sendFile(path.join(__dirname+'/public/html/view-test'));
+});
+
+app.get("/interpreter/:id",(req,res)=>{
+
+  let idFile = req.param('id');
+  let referer = req.get('Referer');
+  if (referer) {
+      if (referer.indexOf('www.messenger.com') >= 0) {
+          res.set('X-Frame-Options', 'ALLOW-FROM https-.,www.messenger.com/ ');
+          console.log("from : www.messenger.com");
+      } else if (referer.indexOf('www.facebook.com') >= 0) {
+        console.log("from : www.facebook.com");
+          res.set('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+      }
+  }
+    res.set('Content-Type', 'text/html');
+     res.sendFile(path.join(__dirname+'/public/templates/'+idFile));
+
 });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -339,9 +360,26 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
-          console.log(res.conversation);
+          console.log(res);
           if (res.conversation.memory && res.conversation.memory.attachment) {
-            var  attch = res.conversation.memory.attachment
+
+              var  attch = res.conversation.memory.attachment;
+
+                  if(attch.instance){
+                    console.log("Interprete instance");
+                    let channel = "messenger";
+                    let urlDispatcher = "https://watson-tlmx-messenger.herokuapp.com/interpreter/";
+
+                    if(urlDispatcher){
+                      interpreter.setUrlDispatcher(urlDispatcher);
+                    }
+                    let body = interpreter.build(attch,channel);
+                      body.attachment.payload.text = msg.content
+                      callSendAPI(sender_psid, body);
+                    return true;
+                  }
+
+
             attch.channelId = "messenger";
             attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
             var msg =  res.messages[0];
