@@ -359,6 +359,25 @@ function handleMessage(sender_psid, received_message) {
                               }
                               }
                           }
+               }else if (res.memory && res.memory.attachment) {
+
+                 res.memory.attachment.channelId = "messenger";
+                 res.memory.attachment.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
+                 request({
+                   "uri": "https://interpreter-builder.herokuapp.com/interpreter",
+                   "method": "POST",
+                   "json": res.memory.attachment
+                 }, (err, res, body) => {
+                   if (!err) {
+                     console.log(body);
+                     callSendAPI(sender_psid, body);
+                   } else {
+                     console.error("Unable to send message:" + err);
+                   }
+                 });
+
+
+                 return true;
                }
 
               // console.log(response);
