@@ -375,10 +375,12 @@ function handleMessage(sender_psid, received_message) {
                       interpreter.setUrlDispatcher(urlDispatcher);
                     }
                     let body = interpreter.build(attch,channel);
-                      body.attachment.payload.text = msg.content
+                    if(msg){
+                      body.attachment.payload.text = msg.content7
+                    }
                       callSendAPI(sender_psid, body);
                     return true;
-                    
+
                   }else{
 
                   attch.channelId = "messenger";
