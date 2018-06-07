@@ -333,6 +333,27 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
+          console.log(res.memory);
+          if (res.memory && res.memory.attachment) {
+
+            res.memory.attachment.channelId = "messenger";
+            res.memory.attachment.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
+            request({
+              "uri": "https://interpreter-builder.herokuapp.com/interpreter",
+              "method": "POST",
+              "json": res.memory.attachment
+            }, (err, res, body) => {
+              if (!err) {
+                console.log(body);
+                callSendAPI(sender_psid, body);
+              } else {
+                console.error("Unable to send message:" + err);
+              }
+            });
+
+
+            return true;
+          }
 
            res.messages.forEach(result => {
              console.log(result);
@@ -359,25 +380,6 @@ function handleMessage(sender_psid, received_message) {
                               }
                               }
                           }
-               }else if (result.memory && result.memory.attachment) {
-
-                 result.memory.attachment.channelId = "messenger";
-                 result.memory.attachment.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
-                 request({
-                   "uri": "https://interpreter-builder.herokuapp.com/interpreter",
-                   "method": "POST",
-                   "json": result.memory.attachment
-                 }, (err, res, body) => {
-                   if (!err) {
-                     console.log(body);
-                     callSendAPI(sender_psid, body);
-                   } else {
-                     console.error("Unable to send message:" + err);
-                   }
-                 });
-
-
-                 return true;
                }
 
               // console.log(response);
