@@ -14,7 +14,7 @@ const recastai = require('recastai')
 var build = new recastai.build(config.get("recastTokenDev"), 'es')
 var app = express();
 
-var Interpreter =  new Interprete();
+var interpreter =  new Interprete();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
