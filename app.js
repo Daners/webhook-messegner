@@ -333,15 +333,15 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
-          console.log(res);
-          if (res.memory && res.memory.attachment) {
-
-            res.memory.attachment.channelId = "messenger";
-            res.memory.attachment.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
+          console.log(res.conversation);
+          if (res.conversation.memory && res.conversation.memory.attachment) {
+            var  attch = res.conversation.memory.attachment
+            attch.channelId = "messenger";
+            attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/"
             request({
               "uri": "https://interpreter-builder.herokuapp.com/interpreter",
               "method": "POST",
-              "json": res.memory.attachment
+              "json": attch
             }, (err, res, body) => {
               if (!err) {
                 console.log(body);
