@@ -360,7 +360,7 @@ function handleMessage(sender_psid, received_message) {
       // Create the payload for a basic text message
       build.dialog({ type: 'text', content: received_message.text}, { conversationId: sender_psid })
         .then(res   => {
-          console.log(res);
+          console.log(res.conversation.memory);
           if (res.conversation.memory && res.conversation.memory.attachment) {
 
               var  attch = res.conversation.memory.attachment;
@@ -377,31 +377,32 @@ function handleMessage(sender_psid, received_message) {
                       body.attachment.payload.text = msg.content
                       callSendAPI(sender_psid, body);
                     return true;
+                  }else{
+
+
+                attch.channelId = "messenger";
+                attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
+                var msg =  res.messages[0];
+
+                request({
+                  "uri": "https://interpreter-builder.herokuapp.com/interpreter",
+                  "method": "POST",
+                  "json": attch
+                }, (err, res, body) => {
+                  if (!err) {
+                    if(msg){
+                      body.attachment.payload.text = msg.content
+                    }
+                    console.log(JSON.stringify(body,null,2));
+                    callSendAPI(sender_psid, body);
+                  } else {
+                    console.error("Unable to send message:" + err);
                   }
+                });
 
 
-            attch.channelId = "messenger";
-            attch.urlDispatcher = "https://interpreter-builder.herokuapp.com/interpreter/";
-            var msg =  res.messages[0];
-
-            request({
-              "uri": "https://interpreter-builder.herokuapp.com/interpreter",
-              "method": "POST",
-              "json": attch
-            }, (err, res, body) => {
-              if (!err) {
-                if(msg){
-                  body.attachment.payload.text = msg.content
-                }
-                console.log(JSON.stringify(body,null,2));
-                callSendAPI(sender_psid, body);
-              } else {
-                console.error("Unable to send message:" + err);
+                return true;
               }
-            });
-
-
-            return true;
           }
 
            res.messages.forEach(result => {
