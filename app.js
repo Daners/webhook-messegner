@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
+let processor =  require("./../app/preprocessor.js");
+let dataContext = [];
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -70,11 +72,13 @@ app.post('/webhook', (req, res) => {
       //  console.log('Sender PSID: ' + sender_psid);
         // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
-        if (webhook_event.message) {
-          handleMessage(sender_psid, webhook_event.message);
-        } else if (webhook_event.postback) {
-          handlePostback(sender_psid, webhook_event.postback);
-        }
+        // if (webhook_event.message) {
+        //   handleMessage(sender_psid, webhook_event.message);
+        // } else if (webhook_event.postback) {
+        //   handlePostback(sender_psid, webhook_event.postback);
+        // }
+
+        handleMessageWatson(sender_psid, webhook_event);
       }
     });
     // Returns a '200 OK' response to all requests
@@ -121,7 +125,13 @@ app.post("/data",function(req,res){
   let psid = req.body.psid;
   console.log(req.body);
 
-  var   response = { "text": "Gracias!"+psid }
+  let webhook_event = {
+    form_content:req.body
+  }
+
+  handleMessageWatson(psid,webhook_event);
+
+   var   response = { "text": "Gracias, estoy validando tu informacion.." }
 
     callSendAPI(psid, response);
 res.sendStatus(200)
@@ -197,6 +207,51 @@ app.use(function(req, res, next) {
 //
 // setDomainWhitelisting();
 
+
+function handleMessageWatson(sender_psid, received_message){
+  let context = getContext(sender_psid);
+  let payload = processor.proccesMessage(sender_psid,received_message,context);
+
+  request({
+    "uri": "https://watson-orchestrator-dev-mws.mybluemix.net/api/message",
+    "method": "POST",
+    "json": payload
+  }, (err, res, body) => {
+      console.log(body);
+    if (!err) {
+      var   response = { "text": body.output.text.join(" ")}
+       callSendAPI(sender_psid, response);
+       updateContext(sender_psid,body.context);
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  });
+
+}
+
+
+function getContext(sender_psid){
+  let context;
+  context = dataContext.filter(obj => {
+     return obj.sender_psid === sender_psid;
+     }).map(obj => {
+        return obj.context;
+   });
+  return context[0];
+}
+
+
+function updateContext(sender_psid,context){
+  let data = dataContext.filter(obj => {
+     return obj.sender_psid === sender_psid;
+     }).map(obj => {
+        obj.context = context
+        return obj;
+   });
+   if(data.length == 0){
+     dataContext.push({"sender_psid":sender_psid,"context":context});
+   }
+}
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
   let response;
