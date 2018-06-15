@@ -241,7 +241,7 @@ function handleMessageWatson(sender_psid, received_message){
             response.attachment.payload.text = body.output.text.join("")
           }
         //  console.log(response);
-      }else{
+      }else if(body.output.text){
           response = { "text": body.output.text.join("")}
       }
        callSendAPI(sender_psid, response);
@@ -251,7 +251,7 @@ function handleMessageWatson(sender_psid, received_message){
       console.error("Unable to send message:" + err);
     }
   });
-
+ return true;
 }
 
 
