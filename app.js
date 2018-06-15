@@ -239,7 +239,7 @@ function handleMessageWatson(sender_psid, received_message){
       }else{
         let textToSend = body.output.text.join("");
         textToSend = textToSend.toLowerCase() ==="hola"?"":textToSend
-          response = { "text": body.output.text.join(" ")}
+          response = { "text": textToSend}
       }
 
        callSendAPI(sender_psid, response);
