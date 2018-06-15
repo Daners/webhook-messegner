@@ -63,12 +63,12 @@ app.post('/webhook', (req, res) => {
     // Iterates over each entry - there may be multiple if batched
 
     body.entry.forEach(function(entry) {
-         console.log(  entry.id +" "+idEntry);
-      if(idEntry && idEntry === entry.id){
-        return true;
-      }
-
-      idEntry = entry.id
+      //    console.log(  entry.id +" "+idEntry);
+      // if(idEntry && idEntry === entry.id){
+      //   return true;
+      // }
+      //
+      // idEntry = entry.id
     //  console.log(JSON.stringify(entry));
       // Gets the message. entry.messaging is an array, but
       // will only ever contain one message, so we get index 0
@@ -87,7 +87,10 @@ app.post('/webhook', (req, res) => {
         // }
           countHandler = countHandler +1;
             console.log(countHandler);
-        handleMessageWatson(sender_psid, webhook_event);
+        // handleMessageWatson(sender_psid, webhook_event);
+      var   response = { "text": "Gracias" }
+
+          callSendAPI(psid, response);
       }
     });
     // Returns a '200 OK' response to all requests
