@@ -211,7 +211,7 @@ app.use(function(req, res, next) {
 function handleMessageWatson(sender_psid, received_message){
   let context = getContext(sender_psid);
   let payload = processor.proccesMessage(sender_psid,received_message,context);
-
+ console.log(JSON.stringify(payload));
   request({
     "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
     headers: {
@@ -225,7 +225,7 @@ function handleMessageWatson(sender_psid, received_message){
       var   response = { "text": body.output.text.join(" ")}
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
-       console.log(JSON.stringify(dataContext));
+
     } else {
       console.error("Unable to send message:" + err);
     }
