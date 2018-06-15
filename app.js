@@ -233,7 +233,7 @@ function handleMessageWatson(sender_psid, received_message){
           if(urlDispatcher){
             interpreter.setUrlDispatcher(urlDispatcher);
           }
-          response = interpreter.build(attch,channel);
+          response = interpreter.build(body.output.attachment,channel);
 
           if(response.attachment){
             response.attachment.payload.text = body.output.text.join(" ")
