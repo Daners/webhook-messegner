@@ -63,7 +63,7 @@ app.post('/webhook', (req, res) => {
     // Iterates over each entry - there may be multiple if batched
 
     body.entry.forEach(function(entry) {
-         console.log(  body.entry.id);
+         console.log(  entry.id +" "+idEntry);
       if(idEntry && idEntry === entry.id){
         return true;
       }
