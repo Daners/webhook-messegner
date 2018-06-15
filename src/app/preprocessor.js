@@ -24,7 +24,7 @@ let proccesMessage = function(sender_psid, webhook_event,context){
      proccesPostBack(message,received_message);
   }
   if(webhook_event.form_content){
-    context.form_content = received_message.form_content;
+  message.context.form_content = received_message.form_content;
   }
   if(sender_psid && !message.context.sender_psid){
     message.context.sender_psid =sender_psid;
