@@ -237,6 +237,8 @@ function handleMessageWatson(sender_psid, received_message){
             response.attachment.payload.text = body.output.text.join(" ")
           }
       }else{
+        let textToSend = body.output.text.join("");
+        textToSend = textToSend.toLowerCase() ==="hola"?"":textToSend
           response = { "text": body.output.text.join(" ")}
       }
 
