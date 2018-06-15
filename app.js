@@ -87,10 +87,7 @@ app.post('/webhook', (req, res) => {
         // }
           countHandler = countHandler +1;
             console.log(countHandler);
-        // handleMessageWatson(sender_psid, webhook_event);
-      var   response = { "text": "Gracias" }
-
-          callSendAPI(sender_psid, response);
+        handleMessageWatson(sender_psid, webhook_event);
       }
     });
     // Returns a '200 OK' response to all requests
