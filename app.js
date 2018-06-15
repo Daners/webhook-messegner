@@ -211,8 +211,10 @@ app.use(function(req, res, next) {
 function handleMessageWatson(sender_psid, received_message){
   let context = getContext(sender_psid);
   let payload = processor.proccesMessage(sender_psid,received_message,context);
+  if(!context){
+      payload.input.text = "";
+  }
 
-  payload.input.text =  payload.input.text.toLowerCase() ==="hola"?"":payload.input.text
  console.log(JSON.stringify(payload));
   request({
     "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
