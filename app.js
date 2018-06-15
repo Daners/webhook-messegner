@@ -123,7 +123,7 @@ app.get("/pdp",function(req,res){
 app.post("/data",function(req,res){
 
   let psid = req.body.psid;
-  console.log(req.body);
+  //console.log(req.body);
 
   let webhook_event = {
     form_content:req.body
@@ -215,7 +215,7 @@ function handleMessageWatson(sender_psid, received_message){
       payload.input.text = "";
   }
 
- console.log(JSON.stringify(payload));
+ //console.log(JSON.stringify(payload));
   request({
     "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
     headers: {
@@ -238,10 +238,10 @@ function handleMessageWatson(sender_psid, received_message){
           response = interpreter.build(body.output.attachment,channel);
 
           if(response.attachment){
-            response.attachment.payload.text = body.output.text.join(" ")
+            response.attachment.payload.text = body.output.text.join("")
           }
       }else{
-          response = { "text": body.output.text.join(" ")}
+          response = { "text": body.output.text.join("")}
       }
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
