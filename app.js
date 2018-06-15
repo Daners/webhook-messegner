@@ -227,7 +227,7 @@ function handleMessageWatson(sender_psid, received_message){
     //  console.log(body);
     if (!err) {
       let response ;
-    //  console.log(JSON.stringify(body,null,2));
+   console.log(JSON.stringify(body.output,null,2));
       if(body.output.attachment){
            let channel = "messenger";
           let urlDispatcher = "https://watson-tlmx-messenger.herokuapp.com/interpreter/";
@@ -240,6 +240,7 @@ function handleMessageWatson(sender_psid, received_message){
           if(response.attachment){
             response.attachment.payload.text = body.output.text.join("")
           }
+        //  console.log(response);
       }else{
           response = { "text": body.output.text.join("")}
       }
