@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
-let processor =  require("./../app/preprocessor.js");
+let processor =  require("./src/app/preprocessor.js");
 let dataContext = [];
 
 var index = require('./routes/index');
