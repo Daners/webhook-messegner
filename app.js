@@ -56,6 +56,7 @@ const VERIFY_TOKEN = config.get("verifyToken");
 var idEntry;
 // Creates the endpoint for our webhook
 app.post('/webhook', (req, res) => {
+    res.sendStatus(200);
 
   let body = req.body;
   // Checks this is an event from a page subscription
@@ -99,7 +100,7 @@ app.post('/webhook', (req, res) => {
   }
 
 console.log(new Date());
-    res.sendStatus(200);
+
 });
 
 
