@@ -90,7 +90,7 @@ app.post('/webhook', (req, res) => {
         // handleMessageWatson(sender_psid, webhook_event);
       var   response = { "text": "Gracias" }
 
-          callSendAPI(psid, response);
+          callSendAPI(sender_psid, response);
       }
     });
     // Returns a '200 OK' response to all requests
