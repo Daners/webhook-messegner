@@ -213,7 +213,10 @@ function handleMessageWatson(sender_psid, received_message){
   let payload = processor.proccesMessage(sender_psid,received_message,context);
 
   request({
-    "uri": "https://watson-orchestrator-dev-mws.mybluemix.net/api/message",
+    "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
+    headers: {
+      'Origin': 'https://watsonuserinterface-dev-johana.mybluemix.net'
+    },
     "method": "POST",
     "json": payload
   }, (err, res, body) => {
