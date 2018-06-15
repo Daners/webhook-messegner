@@ -15,6 +15,7 @@ var Interprete = require("interpreter");
 const recastai = require('recastai')
 var build = new recastai.build(config.get("recastTokenDev"), 'es')
 var app = express();
+var countHandler = 0;
 
 var interpreter =  new Interprete();
 
@@ -209,6 +210,7 @@ app.use(function(req, res, next) {
 
 
 function handleMessageWatson(sender_psid, received_message){
+  countHandler = countHandler +1;
   let context = getContext(sender_psid);
   let payload = processor.proccesMessage(sender_psid,received_message,context);
   if(!context){
@@ -227,7 +229,7 @@ function handleMessageWatson(sender_psid, received_message){
     //  console.log(body);
     if (!err) {
       let response ;
-   console.log(JSON.stringify(body.output,null,2));
+      //console.log(JSON.stringify(body.output,null,2));
       if(body.output.attachment){
            let channel = "messenger";
           let urlDispatcher = "https://watson-tlmx-messenger.herokuapp.com/interpreter/";
@@ -244,14 +246,16 @@ function handleMessageWatson(sender_psid, received_message){
       }else if(body.output.text){
           response = { "text": body.output.text.join("")}
       }
+      console.log(countHandler);
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
 
     } else {
       console.error("Unable to send message:" + err);
     }
+    return false;
   });
- return true;
+
 }
 
 
