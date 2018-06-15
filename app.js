@@ -220,11 +220,12 @@ function handleMessageWatson(sender_psid, received_message){
     "method": "POST",
     "json": payload
   }, (err, res, body) => {
-      console.log(body);
+    //  console.log(body);
     if (!err) {
       var   response = { "text": body.output.text.join(" ")}
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
+       console.log(JSON.stringify(dataContext));
     } else {
       console.error("Unable to send message:" + err);
     }
