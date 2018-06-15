@@ -253,9 +253,9 @@ function handleMessageWatson(sender_psid, received_message){
     } else {
       console.error("Unable to send message:" + err);
     }
-    return false;
+    return true;
   });
-
+return true
 }
 
 
@@ -617,6 +617,7 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   });
+  return true
 }
 
 
