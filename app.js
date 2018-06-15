@@ -231,8 +231,13 @@ function handleMessageWatson(sender_psid, received_message){
             interpreter.setUrlDispatcher(urlDispatcher);
           }
           response = interpreter.build(attch,channel);
+          if(response.attachment){
+            response.attachment.payload.text = body.output.text.join(" ")
+          }
+      }else{
+          response = { "text": body.output.text.join(" ")}
       }
-      response = { "text": body.output.text.join(" ")}
+
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
 
