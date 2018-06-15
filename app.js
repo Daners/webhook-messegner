@@ -86,7 +86,7 @@ app.post('/webhook', (req, res) => {
         //   handlePostback(sender_psid, webhook_event.postback);
         // }
           countHandler = countHandler +1;
-            console.log(countHandler);
+            console.log(new Date());
         handleMessageWatson(sender_psid, webhook_event);
       }
     });
@@ -98,6 +98,7 @@ app.post('/webhook', (req, res) => {
     res.sendStatus(404);
   }
 
+console.log(new Date());
     res.sendStatus(200);
 });
 
