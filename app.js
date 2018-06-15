@@ -61,6 +61,7 @@ app.post('/webhook', (req, res) => {
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
     // Iterates over each entry - there may be multiple if batched
+   console.log(  body.entry);
     body.entry.forEach(function(entry) {
     //  console.log(JSON.stringify(entry));
       // Gets the message. entry.messaging is an array, but
@@ -78,7 +79,8 @@ app.post('/webhook', (req, res) => {
         // } else if (webhook_event.postback) {
         //   handlePostback(sender_psid, webhook_event.postback);
         // }
-
+          countHandler = countHandler +1;
+            console.log(countHandler);
         handleMessageWatson(sender_psid, webhook_event);
       }
     });
@@ -210,7 +212,7 @@ app.use(function(req, res, next) {
 
 
 function handleMessageWatson(sender_psid, received_message){
-  countHandler = countHandler +1;
+
   let context = getContext(sender_psid);
   let payload = processor.proccesMessage(sender_psid,received_message,context);
   if(!context){
@@ -247,7 +249,7 @@ function handleMessageWatson(sender_psid, received_message){
       }else if(body.output.text){
           response = { "text": body.output.text.join("")}
       }
-      console.log(countHandler);
+
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
 
