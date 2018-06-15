@@ -241,7 +241,6 @@ function handleMessageWatson(sender_psid, received_message){
       }else{
           response = { "text": body.output.text.join(" ")}
       }
-
        callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
 
