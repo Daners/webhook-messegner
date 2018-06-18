@@ -232,7 +232,7 @@ function handleMessageWatson(sender_psid, received_message){
     if(!context){
         payload.input.text = "";
     }
-   //console.log(JSON.stringify(payload));
+   console.log(JSON.stringify(payload));
     request({
       "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
       headers: {
@@ -245,7 +245,7 @@ function handleMessageWatson(sender_psid, received_message){
       if (!err) {
         let response =[];
           response = processor.postProccesMessage(body);
-          console.log(JSON.stringify(response));
+        //  console.log(JSON.stringify(response));
           for (var i = 0,res; res = response[i++];) {
              callSendAPI(sender_psid, res);
           }
