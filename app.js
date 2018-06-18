@@ -241,10 +241,10 @@ function handleMessageWatson(sender_psid, received_message){
     //  console.log(body);
     if (!err) {
       let response =[];
-        response = processor.postProccesMessage(body)
-
+        response = processor.postProccesMessage(body);
+        
         for (var i = 0,res; res = response[i++];) {
-           callSendAPI(sender_psid, response);
+           callSendAPI(sender_psid, res);
         }
 
 
