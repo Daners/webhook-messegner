@@ -230,8 +230,8 @@ function handleMessageWatson(sender_psid, received_message){
   //     payload.input.text = "";
   // }
  //console.log(JSON.stringify(payload));
- console.log("MESSGE: "+received_message.text);
-  if (received_message.text) {
+ console.log("MESSGE: "+received_message.message.text);
+  if (received_message.message.text) {
    setTimeout(function(){  callSendAPI(sender_psid, { "text": "Gracias, estoy validando tu informacion.." }); }, 3000);
   }
 
