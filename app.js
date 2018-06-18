@@ -151,6 +151,24 @@ app.post("/data",function(req,res){
 res.sendStatus(200)
 })
 
+
+app.post("/interpreter/:id",function(req,res){
+
+  let psid = req.body.psid;
+  //console.log(req.body);
+
+  let webhook_event = {
+    form_content:req.body
+  }
+
+  handleMessageWatson(psid,webhook_event);
+
+   var   response = { "text": "Gracias, estoy validando tu informacion.." }
+
+    callSendAPI(psid, response);
+res.sendStatus(200)
+})
+
 app.get('/test-view', function(req, res){
   let referer = req.get('Referer');
   if (referer) {
