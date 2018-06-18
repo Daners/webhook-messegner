@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
-let processor =  require("./src/app/preprocessor.js");
+let processor =  require("./src/app/processor.js");
 let dataContext = [];
 
 var index = require('./routes/index');
@@ -225,7 +225,7 @@ app.use(function(req, res, next) {
 function handleMessageWatson(sender_psid, received_message){
 
   let context = getContext(sender_psid);
-  let payload = processor.proccesMessage(sender_psid,received_message,context);
+  let payload = processor.preProccesMessage(sender_psid,received_message,context);
   if(!context){
       payload.input.text = "";
   }
@@ -240,26 +240,14 @@ function handleMessageWatson(sender_psid, received_message){
   }, (err, res, body) => {
     //  console.log(body);
     if (!err) {
-      let response ;
-      //console.log(JSON.stringify(body.output,null,2));
-      if(body.output.attachment){
-           let channel = "messenger";
-          let urlDispatcher = "https://watson-tlmx-messenger.herokuapp.com/interpreter/";
+      let response =[];
+        response = processor.postProccesMessage(body)
 
-          if(urlDispatcher){
-            interpreter.setUrlDispatcher(urlDispatcher);
-          }
-          response = interpreter.build(body.output.attachment,channel);
+        for (var i = 0,res; res = response[i++];) {
+           callSendAPI(sender_psid, response);
+        }
 
-          if(response.attachment){
-            response.attachment.payload.text = body.output.text.join("")
-          }
-        //  console.log(response);
-      }else if(body.output.text){
-          response = { "text": body.output.text.join("")}
-      }
 
-       callSendAPI(sender_psid, response);
        updateContext(sender_psid,body.context);
 
     } else {
