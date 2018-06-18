@@ -15,7 +15,7 @@ let preProccesMessage = function(sender_psid, webhook_event,context){
     message.context = context;
   }
 
-  if (webhook_event.message) {
+  if(webhook_event.message) {
     received_message = webhook_event.message;
     if(received_message.text){
       proccesText(message,received_message);
@@ -23,14 +23,13 @@ let preProccesMessage = function(sender_psid, webhook_event,context){
     if(received_message.attachments){
       proccesAttachment(message,received_message);
     }
-  } else if (webhook_event.postback) {
+  }else if (webhook_event.postback) {
      received_message = webhook_event.postback;
      proccesPostBack(message,received_message);
+  }else if(webhook_event.form_content){
+    message.context.form_content = webhook_event.form_content;
   }else{
-    return false;
-  }
-  if(webhook_event.form_content){
-  message.context.form_content = webhook_event.form_content;
+    return false
   }
   if(sender_psid && !message.context.sender_psid){
     message.context.sender_psid =sender_psid;
