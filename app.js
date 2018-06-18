@@ -245,7 +245,7 @@ function handleMessageWatson(sender_psid, received_message){
       if (!err) {
         let response =[];
           response = processor.postProccesMessage(body);
-          console.log(JSON.stringify(response));
+          console.log(JSON.stringify(body));
           for (var i = 0,res; res = response[i++];) {
              callSendAPI(sender_psid, res);
           }
