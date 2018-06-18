@@ -225,7 +225,7 @@ app.use(function(req, res, next) {
 function handleMessageWatson(sender_psid, received_message){
 
 //  let context = getContext(sender_psid);
-  let payload = processor.preProccesMessage(sender_psid,received_message,null);
+  //let payload = processor.preProccesMessage(sender_psid,received_message,null);
   // if(!context){
   //     payload.input.text = "";
   // }
