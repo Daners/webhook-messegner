@@ -241,11 +241,11 @@ function handleMessageWatson(sender_psid, received_message){
       "method": "POST",
       "json": payload
     }, (err, res, body) => {
-       console.log(body);
+       console.log(JSON.stringify(body));
       if (!err) {
         let response =[];
           response = processor.postProccesMessage(body);
-        //  console.log(JSON.stringify(response));
+          console.log(JSON.stringify(response));
           for (var i = 0,res; res = response[i++];) {
              callSendAPI(sender_psid, res);
           }
