@@ -81,14 +81,14 @@ let postProccesMessage = function(body){
       attch = interpreter.build(body.output.attachment,channel);
       if(attch.attachment && attch.attachment.payload){
         if( attch.attachment.payload.hasOwnProperty("text")){
-          response.attachment.payload.text = output.text.join(" ");
+          attch.attachment.payload.text = output.text.join(" ");
         }else if (output.text){
           let text = { "text": body.output.text.join("")}
           response.push(text);
         }
           response.push(attch);
       }
-    }else if (output.text){
+    }else if (output && output.text){
       let attch= { "text": body.output.text.join("")}
       response.push(attch);
     }
