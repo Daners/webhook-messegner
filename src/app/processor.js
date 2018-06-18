@@ -59,7 +59,7 @@ let proccesAttachment = function(message,received_message){
         let lgn = coordinates.long?coordinates.long.toString():""
         let location = {
             "lat":lat,
-            "lgn":lgn
+            "lng":lgn
         };
         if(message.context && !message.context.communication_context){
           message.context.communication_context = {};
