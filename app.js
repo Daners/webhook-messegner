@@ -81,14 +81,14 @@ app.post('/webhook', (req, res) => {
       //  console.log('Sender PSID: ' + sender_psid);
         // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
-         // if (webhook_event.message) {
-         //   handleMessage(sender_psid, webhook_event.message);
-         // } else if (webhook_event.postback) {
-         //   handlePostback(sender_psid, webhook_event.postback);
-         // }
-        //   countHandler = countHandler +1;
-        //     console.log(new Date());
-         handleMessageWatson(sender_psid, webhook_event);
+        // if (webhook_event.message) {
+        //   handleMessage(sender_psid, webhook_event.message);
+        // } else if (webhook_event.postback) {
+        //   handlePostback(sender_psid, webhook_event.postback);
+        // }
+          countHandler = countHandler +1;
+            console.log(new Date());
+        handleMessageWatson(sender_psid, webhook_event);
       }
     });
     // Returns a '200 OK' response to all requests
@@ -223,44 +223,39 @@ app.use(function(req, res, next) {
 
 
 function handleMessageWatson(sender_psid, received_message){
+if(received_message.message){
+    let context = getContext(sender_psid);
+    let payload = processor.preProccesMessage(sender_psid,received_message,context);
+    if(!context){
+        payload.input.text = "";
+    }
+   //console.log(JSON.stringify(payload));
+    request({
+      "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
+      headers: {
+        'Origin': 'https://watsonuserinterface-dev-johana.mybluemix.net'
+      },
+      "method": "POST",
+      "json": payload
+    }, (err, res, body) => {
+      //  console.log(body);
+      if (!err) {
+        let response =[];
+          response = processor.postProccesMessage(body);
 
-//  let context = getContext(sender_psid);
-  //let payload = processor.preProccesMessage(sender_psid,received_message,null);
-  // if(!context){
-  //     payload.input.text = "";
-  // }
- //console.log(JSON.stringify(payload));
- console.log("MESSGE: "+received_message.message.text);
-  if (received_message.message.text) {
-   setTimeout(function(){  callSendAPI(sender_psid, { "text": "Gracias, estoy validando tu informacion.." }); }, 3000);
+          for (var i = 0,res; res = response[i++];) {
+             callSendAPI(sender_psid, res);
+          }
+
+
+         updateContext(sender_psid,body.context);
+
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+
+    });
   }
-
-  // request({
-  //   "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
-  //   headers: {
-  //     'Origin': 'https://watsonuserinterface-dev-johana.mybluemix.net'
-  //   },
-  //   "method": "POST",
-  //   "json": payload
-  // }, (err, res, body) => {
-  //   //  console.log(body);
-  //   if (!err) {
-  //     let response =[];
-  //       response = processor.postProccesMessage(body);
-  //
-  //       for (var i = 0,res; res = response[i++];) {
-  //          callSendAPI(sender_psid, res);
-  //       }
-  //
-  //
-  //      updateContext(sender_psid,body.context);
-  //
-  //   } else {
-  //     console.error("Unable to send message:" + err);
-  //   }
-  //
-  // });
-
 }
 
 
