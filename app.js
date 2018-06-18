@@ -230,7 +230,10 @@ function handleMessageWatson(sender_psid, received_message){
   //     payload.input.text = "";
   // }
  //console.log(JSON.stringify(payload));
- setTimeout(function(){  callSendAPI(sender_psid, { "text": "Gracias, estoy validando tu informacion.." }); }, 3000);
+ console.log("MESSGE: "+received_message.text);
+  if (received_message.text) {
+   setTimeout(function(){  callSendAPI(sender_psid, { "text": "Gracias, estoy validando tu informacion.." }); }, 3000);
+  }
 
   // request({
   //   "uri": "https://telmex-watson-orchestrator-johana.mybluemix.net/api/message",
