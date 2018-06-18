@@ -226,9 +226,9 @@ function handleMessageWatson(sender_psid, received_message){
 
 //  let context = getContext(sender_psid);
   let payload = processor.preProccesMessage(sender_psid,received_message,context);
-  if(!context){
-      payload.input.text = "";
-  }
+  // if(!context){
+  //     payload.input.text = "";
+  // }
  //console.log(JSON.stringify(payload));
  setTimeout(function(){  callSendAPI(sender_psid, { "text": "Gracias, estoy validando tu informacion.." }); }, 3000);
 
