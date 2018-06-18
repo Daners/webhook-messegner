@@ -26,6 +26,8 @@ let preProccesMessage = function(sender_psid, webhook_event,context){
   } else if (webhook_event.postback) {
      received_message = webhook_event.postback;
      proccesPostBack(message,received_message);
+  }else{
+    return false;
   }
   if(webhook_event.form_content){
   message.context.form_content = webhook_event.form_content;

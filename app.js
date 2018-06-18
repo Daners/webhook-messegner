@@ -223,9 +223,12 @@ app.use(function(req, res, next) {
 
 
 function handleMessageWatson(sender_psid, received_message){
-if(received_message.message || received_message.form_content){
+
     let context = getContext(sender_psid);
     let payload = processor.preProccesMessage(sender_psid,received_message,context);
+    if(!payload){
+      return false;
+    }
     if(!context){
         payload.input.text = "";
     }
@@ -255,7 +258,7 @@ if(received_message.message || received_message.form_content){
       }
 
     });
-  }
+
 }
 
 
