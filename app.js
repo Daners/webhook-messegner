@@ -253,9 +253,9 @@ function handleMessageWatson(sender_psid, received_message){
     } else {
       console.error("Unable to send message:" + err);
     }
-    return true;
+
   });
-return true
+
 }
 
 
