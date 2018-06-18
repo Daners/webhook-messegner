@@ -242,7 +242,7 @@ function handleMessageWatson(sender_psid, received_message){
     if (!err) {
       let response =[];
         response = processor.postProccesMessage(body);
-        
+
         for (var i = 0,res; res = response[i++];) {
            callSendAPI(sender_psid, res);
         }
@@ -617,7 +617,6 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   });
-  return true
 }
 
 
