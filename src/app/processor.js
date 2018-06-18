@@ -72,8 +72,8 @@ let postProccesMessage = function(body){
   let response = [];
   if(body){
     let output = body.output;
-    let channel = body.context.channel||"messenger";
-    let urlDispatcher=body.context.urlDispatcher||config.get("url_dispatcher")||"";
+    let channel = /*body.context.channel||*/"messenger";
+    let urlDispatcher=config.get("url_dispatcher")||"";
     if(urlDispatcher){
       interpreter.setUrlDispatcher(urlDispatcher);
     }
