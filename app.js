@@ -243,9 +243,9 @@ function handleMessageWatson(sender_psid, received_message){
       let response =[];
         response = processor.postProccesMessage(body);
 
-        for (var i = 0,res; res = response[i++];) {
-           callSendAPI(sender_psid, res);
-        }
+        // for (var i = 0,res; res = response[i++];) {
+        //    callSendAPI(sender_psid, res);
+        // }
 
 
        updateContext(sender_psid,body.context);
