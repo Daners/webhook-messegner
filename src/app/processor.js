@@ -55,9 +55,11 @@ let proccesAttachment = function(message,received_message){
       let payload = attachment.payload
       if(  payload && payload.coordinates){
         let coordinates =payload.coordinates;
+        let lat = coordinates.lat? coordinates.lat.toString():""
+        let lgn = coordinates.long?coordinates.long.toString():""
         let location = {
-            lat:coordinates.lat,
-            lgn:coordinates.long
+            "lat":lat,
+            "lgn":lgn
         };
         if(message.context && !message.context.communication_context){
           message.context.communication_context = {};
