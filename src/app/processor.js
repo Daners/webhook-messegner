@@ -90,6 +90,11 @@ let postProccesMessage = function(body){
           response.push(text);
         }
           response.push(attch);
+      }else if(attch.quick_replies){
+          if( attch.hasOwnProperty("text")){
+              attch.text = output.text.join(" ");
+          }
+          response.push(attch);
       }
     }else if (output && output.text){
       let attch= { "text": body.output.text.join("")}
