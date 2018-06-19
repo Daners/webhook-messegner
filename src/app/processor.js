@@ -82,6 +82,7 @@ let postProccesMessage = function(body){
     if(output && output.attachment){
       let attch;
       attch = interpreter.build(body.output.attachment,channel);
+        console.log(attch);
       if(attch.attachment && attch.attachment.payload){
         if( attch.attachment.payload.hasOwnProperty("text")){
           attch.attachment.payload.text = output.text.join(" ");
@@ -91,7 +92,7 @@ let postProccesMessage = function(body){
         }
           response.push(attch);
       }else if(attch["quick_replies"]){
-        console.log(attch);
+
           if( attch.hasOwnProperty("text")){
               attch.text = output.text.join(" ");
           }

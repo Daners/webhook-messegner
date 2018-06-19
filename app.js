@@ -259,7 +259,7 @@ function handleMessageWatson(sender_psid, received_message){
       "method": "POST",
       "json": payload
     }, (err, res, body) => {
-       //console.log(JSON.stringify(body));
+      console.log(JSON.stringify(body.output));
       if (!err) {
         let response =[];
           response = processor.postProccesMessage(body);
