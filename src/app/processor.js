@@ -90,7 +90,7 @@ let postProccesMessage = function(body){
           response.push(text);
         }
           response.push(attch);
-      }else if(attch.["quick_replies"]){
+      }else if(attch["quick_replies"]){
         console.log(attch);
           if( attch.hasOwnProperty("text")){
               attch.text = output.text.join(" ");
