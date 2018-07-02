@@ -185,6 +185,22 @@ app.get('/test-view', function(req, res){
      res.sendFile(path.join(__dirname+'/public/html/view-test'));
 });
 
+app.get('/webview', function(req, res){
+  let referer = req.get('Referer');
+  if (referer) {
+      if (referer.indexOf('www.messenger.com') >= 0) {
+          res.set('X-Frame-Options', 'ALLOW-FROM https-.,www.messenger.com/ ');
+          console.log("from : www.messenger.com");
+      } else if (referer.indexOf('www.facebook.com') >= 0) {
+        console.log("from : www.facebook.com");
+          res.set('X-Frame-Options', 'ALLOW-FROM https://www.facebook.com/');
+      }
+  }
+    // res.set('Content-Type', 'text/html');
+    // console.log('/public/html/view-test');
+     res.sendFile(path.join(__dirname+'/public/html/view-test.html'));
+});
+
 app.get("/interpreter/:id",(req,res)=>{
 
   let idFile = req.param('id');
@@ -448,7 +464,7 @@ function handleMessage(sender_psid, received_message) {
                    "buttons":[
                      {
                        "type":"web_url",
-                       "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
+                       "url":"https://watson-tlmx-messenger.herokuapp.com/webview",
                        "title":"perfilar",
                        "webview_height_ratio": 'tall',
                        "messenger_extensions": true
