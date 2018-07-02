@@ -171,7 +171,7 @@ res.sendStatus(200)
 
 app.get('/test-view', function(req, res){
   let referer = req.get('Referer');
-    console.log(referer);
+    console.log("referer: ",referer);
   if (referer) {
       if (referer.indexOf('www.messenger.com') >= 0) {
           res.set('X-Frame-Options', 'ALLOW-FROM https://www.messenger.com/ ');
