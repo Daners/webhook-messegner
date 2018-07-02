@@ -187,6 +187,7 @@ app.get('/test-view', function(req, res){
 });
 
 app.get('/webview', function(req, res){
+      console.log(referer);
   let referer = req.get('Referer');
   if (referer) {
       if (referer.indexOf('www.messenger.com') >= 0) {
