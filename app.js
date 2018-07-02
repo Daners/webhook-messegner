@@ -438,7 +438,7 @@ function handleMessage(sender_psid, received_message) {
       return true;
     }
 
-    if(result.type === "webview"){
+    if(received_message.text && received_message.text === "webview"){
           response = {
             "attachment":{
                "type":"template",
