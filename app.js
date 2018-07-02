@@ -198,7 +198,7 @@ app.get('/webview', function(req, res){
   }
     // res.set('Content-Type', 'text/html');
     // console.log('/public/html/view-test');
-     res.sendFile(path.join(__dirname+'/public/html/view-test2.html'));
+     res.sendFile(path.join(__dirname+'/public/html/test2.html'));
 });
 
 app.get("/interpreter/:id",(req,res)=>{
