@@ -437,6 +437,29 @@ function handleMessage(sender_psid, received_message) {
       callSendAPI(sender_psid, response);
       return true;
     }
+
+    if(result.type === "webview"){
+          response = {
+            "attachment":{
+               "type":"template",
+                 "payload":{
+                   "template_type":"button",
+                   "text":"Ahora vamos a perfilarte",
+                   "buttons":[
+                     {
+                       "type":"web_url",
+                       "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
+                       "title":"perfilar",
+                       "webview_height_ratio": 'tall',
+                       "messenger_extensions": true
+                     }
+                     ]
+                   }
+                   }
+               }
+               callSendAPI(sender_psid, response);
+               return true;
+    }
       if(received_message.text && received_message.text == "test-list2"){
 
       response = {
