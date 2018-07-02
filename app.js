@@ -464,7 +464,7 @@ function handleMessage(sender_psid, received_message) {
                    "buttons":[
                      {
                        "type":"web_url",
-                       "url":"https://watson-tlmx-messenger.herokuapp.com/webview",
+                       "url":"https://watson-tlmx-messenger.herokuapp.com/test-view",
                        "title":"perfilar",
                        "webview_height_ratio": 'tall',
                        "messenger_extensions": true
