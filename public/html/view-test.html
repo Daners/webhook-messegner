@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+      <title>Test Vista Web</title>
+      <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style media="screen">
+      body{
+        background-color: #f9f9f9;
+      }
+
+        .radio {
+          margin: 0.5rem;
+        }
+        .radio input[type="radio"] {
+          position: absolute;
+          opacity: 0;
+        }
+        .radio input[type="radio"] + .radio-label:before {
+          content: '';
+          background: #f4f4f4;
+          border-radius: 100%;
+          border: 1px solid #b4b4b4;
+          display: inline-block;
+          width: 1.4em;
+          height: 1.4em;
+          position: relative;
+          top: -0.2em;
+          margin-right: 1em;
+          vertical-align: top;
+          cursor: pointer;
+          text-align: center;
+          transition: all 250ms ease;
+        }
+        .radio input[type="radio"]:checked + .radio-label:before {
+          background-color: #3197EE;
+          box-shadow: inset 0 0 0 4px #f4f4f4;
+        }
+        .radio input[type="radio"]:focus + .radio-label:before {
+          outline: none;
+          border-color: #3197EE;
+        }
+
+        .radio input[type="radio"]:disabled + .radio-label {
+          color: #9c9ca2;
+          cursor: auto;
+        }
+        .radio input[type="radio"]:disabled + .radio-label:before {
+
+          border-color: #b4b4b4;
+          background: #dad6d6;
+        }
+        .radio input[type="radio"] + .radio-label:empty:before {
+          margin-right: 0;
+        }
+        .radio-label{
+          width: 100%;
+        }
+
+        /*Check*/
+        .check {
+          margin: 0.5rem;
+        }
+        .check input[type="checkbox"] {
+          position: absolute;
+          opacity: 0;
+        }
+        .check input[type="checkbox"] + .check-label:before {
+          content: '';
+          background: #f4f4f4;
+          border-radius: 20%;
+          border: 1px solid #b4b4b4;
+          display: inline-block;
+          width: 1.4em;
+          height: 1.4em;
+          position: relative;
+          top: -0.2em;
+          margin-right: 1em;
+          vertical-align: top;
+          cursor: pointer;
+          text-align: center;
+          transition: all 250ms ease;
+        }
+
+
+        .check input[type="checkbox"]:checked + .check-label:after {
+              content: '';
+            position: absolute;
+            left: 34px;
+            top: 26px;
+            background: #2196F3;
+            width: 3px;
+            height: 3px;
+            box-shadow: 2px 0 0 #2196F3, 4px 0 0 #2196F3, 4px -2px 0 #2196F3, 4px -4px 0 #2196F3, 4px -6px 0 #2196F3, 4px -8px 0 #2196F3;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        /* .check input[type="checkbox"]:checked + .check-label:before {
+          background-color: #3197EE;
+          box-shadow: inset 0 0 0 4px #f4f4f4;
+        } */
+        .check input[type="checkbox"]:focus + .check-label:before {
+          outline: none;
+          border-color: #3197EE;
+        }
+
+
+
+        .check input[type="checkbox"]:disabled + .check-label {
+          color: #9c9ca2;
+          cursor: auto;
+        }
+        .check input[type="checkbox"]:disabled + .check-label:before {
+            background: #dad6d6;
+        }
+        .check input[type="checkbox"]:disabled + .check-label:after {
+          background: #a2a5a7;
+        box-shadow: 2px 0 0 #a2a5a7, 4px 0 0 #a2a5a7, 4px -2px 0 #a2a5a7, 4px -4px 0 #a2a5a7, 4px -6px 0 #a2a5a7, 4px -8px 0 #a2a5a7;
+        }
+        .check input[type="checkbox"] + .check-label:empty:before {
+          margin-right: 0;
+        }
+        .check-label{
+          width: 100%;
+        }
+
+
+        .form-element > .lead{
+          padding-left: 15px;
+          padding-top: 10px;
+        }
+
+        .footer {
+       position: fixed;
+       left: 0;
+       bottom: 0;
+       width: 100%;
+       text-align: center;
+       z-index: 1000;
+    }
+    .spand-xs-button {
+        width: 100%;
+        display: block;
+    }
+    .content-form{
+          padding: 0 0 60px 0;
+    }
+    .has-float-label{display:block;position:relative;margin: 0.3rem;}.has-float-label label,.has-float-label>span{position:absolute;cursor:text;font-size:85%;opacity:1;-webkit-transition:all .2s;transition:all .2s;top:-.5em;left:.75rem;z-index:3;line-height:1;padding:0 1px}.has-float-label label::after,.has-float-label>span::after{content:" ";display:block;position:absolute;background:#fff;height:2px;top:50%;left:-.2em;right:-.2em;z-index:-1}.has-float-label .form-control::-webkit-input-placeholder{opacity:1;-webkit-transition:all .2s;transition:all .2s}.has-float-label .form-control::-moz-placeholder{opacity:1;transition:all .2s}.has-float-label .form-control:-ms-input-placeholder{opacity:1;transition:all .2s}.has-float-label .form-control::placeholder{opacity:1;-webkit-transition:all .2s;transition:all .2s}.has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder{opacity:0}.has-float-label .form-control:placeholder-shown:not(:focus)::-moz-placeholder{opacity:0}.has-float-label .form-
+    -shown:not(:focus):-ms-input-placeholder{opacity:0}.has-float-label .form-control:placeholder-shown:not(:focus)::placeholder{opacity:0}.has-float-label .form-control:placeholder-shown:not(:focus)+*{font-size:100%;opacity:.5;top:.5em}.input-group .has-float-label{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;margin-bottom:0;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center}.input-group .has-float-label .form-control{width:100%;border-radius:.25rem}.input-group .has-float-label:not(:last-child),.input-group .has-float-label:not(:last-child) .form-control{border-bottom-right-radius:0;border-top-right-radius:0;border-right:0}.input-group .has-float-label:not(:first-child),.input-group .has-float-label:not(:first-child) .form-control{border-bottom-left-radius:0;border-top-left-radius:0}
+
+    input[type="text"], textarea {
+    outline: none;
+    box-shadow:none !important;
+    border:1px solid #ccc !important;
+    }
+
+    select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+    background: #ffffff;
+  background-image: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: block;
+  height: 2.5em;
+  line-height: 2;
+  background: #ffffff;
+  overflow: hidden;
+  border-radius: .25em;
+  margin-left: 0.3rem;
+  }
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+      color: #495057;
+  cursor: pointer;
+          border: 1px solid #ccc !important;
+}
+select::-ms-expand {
+  display: none;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 0.7em;
+  background: #ffffff;
+  border: 1px solid #ccc !important;
+  pointer-events: none;
+  line-height: 2.5;
+}
+/* Transition */
+.select:hover::after {
+  color: #9fa1a4;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+    </style>
+  </head>
+  <body>
+
+    <div class="content-form" >
+      <form id="formData" novalidate>
+
+      <div class="form-element">
+        <p class="lead">
+        ¿Qué tipo de servicio te interesa conocer?
+        </p>
+        <ul class="list-group ">
+          <li class="list-group-item">
+            <div class="radio">
+              <input id="radio-1" name="radio" type="radio" value = "H" >
+              <label for="radio-1" class="radio-label">Hogar</label>
+            </div>
+        </li>
+          <li class="list-group-item">
+            <div class="radio">
+              <input id="radio-2" name="radio" type="radio" value = "N">
+              <label  for="radio-2" class="radio-label">Negocio</label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    <div class="form-element">
+      <p class="lead">
+      ¿Cunatos Dispositivos conectas?
+      </p>
+      <ul class="list-group ">
+        <li class="list-group-item" >
+          <div class="radio">
+            <input id="uno" name="device" type="radio" value = "uno">
+            <label for="uno" class="radio-label">Uno</label>
+          </div>
+      </li>
+        <li class="list-group-item" >
+          <div class="radio">
+            <input id="dos" name="device" type="radio" value = "dos" disabled>
+            <label  for="dos" class="radio-label">Dos</label>
+          </div>
+        </li>
+        <li class="list-group-item" >
+          <div class="radio">
+            <input id="tres" name="device" type="radio" value = "tres" disabled checked>
+            <label  for="tres" class="radio-label">Tres</label>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+
+        <div class="form-element">
+          <p class="lead">
+          ¿Recordar Contraseña?
+          </p>
+          <ul class="list-group ">
+            <li class="list-group-item" >
+              <div class="check">
+                <input id="testcheck" name="testcheck" type="checkbox" value = "Si">
+                <label for="testcheck" class="check-label">Si</label>
+              </div>
+          </li>
+          <li class="list-group-item" >
+            <div class="check">
+              <input id="testcheckd" name="testcheckd" type="checkbox" value = "NO" disabled>
+              <label for="testcheckd" class="check-label">NO</label>
+            </div>
+        </li>
+        <li class="list-group-item" >
+          <div class="check">
+            <input id="testcheckd2" name="testcheckd2" type="checkbox" value = "NO" disabled checked>
+            <label for="testcheckd2" class="check-label">NAIN</label>
+          </div>
+      </li>
+          </ul>
+        </div>
+
+    <div class="form-element">
+      <p class="lead">
+      Datos:
+      </p>
+      <ul class="list-group ">
+        <li class="list-group-item" >
+          <span class="has-float-label">
+             <input class="form-control" id="email" type="email" placeholder="ejm@dot.com"/>
+             <label for="email">Email</label>
+         </span>
+      </li>
+      <li class="list-group-item" >
+        <span class="has-float-label">
+           <input class="form-control" id="nombre" type="text" placeholder="J.D"/>
+           <label for="nombre">Nombre</label>
+       </span>
+    </li>
+      </ul>
+    </div>
+
+    <div class="form-element">
+      <p class="lead">
+      Texto:
+      </p>
+      <ul class="list-group ">
+        <li class="list-group-item" >
+          <span class="has-float-label">
+             <textarea class="form-control" id="texto"  placeholder="Comentarios"></textarea>
+             <label for="email">Texto</label>
+         </span>
+      </li>
+      </ul>
+    </div>
+
+    <div class="form-element">
+      <p class="lead">
+      Pais:
+      </p>
+      <ul class="list-group ">
+        <li class="list-group-item" >
+          <div class="select">
+            <select name="slct" id="slct">
+              <option>Choose an option</option>
+              <option value="1">Pure CSS</option>
+              <option value="2">No JS</option>
+              <option value="3">Nice!</option>
+            </select>
+          </div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="form-element">
+      <p class="lead">
+      Cambio de contraseña:
+      </p>
+      <ul class="list-group ">
+        <li class="list-group-item" >
+          <span class="has-float-label">
+             <input class="form-control" id="email" type="email" placeholder="ejm@dot.com"/>
+             <label for="email">Email</label>
+         </span>
+      </li>
+      <li class="list-group-item" >
+        <span class="has-float-label">
+           <input class="form-control" id="password1" type="password" placeholder="****"/>
+           <label for="password1">Contraseña</label>
+           <small id="passwordHelpBlock" class="form-text text-muted">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+              </small>
+       </span>
+     </li>
+     <li class="list-group-item" >
+       <span class="has-float-label">
+          <input class="form-control" id="password2" type="password" placeholder="****" required/>
+          <label for="password2">Repetir Contraseña</label>
+          <div class="invalid-feedback">
+           La contraseña debe ser igual a la anterior
+         </div>
+      </span>
+    </li>
+      </ul>
+    </div>
+
+    </div>
+    <div class="footer">
+        <ul class="list-group ">
+            <li class="list-group-item">
+              <button type="button" class="btn btn-primary spand-xs-button" name="button" onclick="sendMessage()">Enviar</button>
+
+            </li>
+            </ul>
+              <input type="hidden" id="psid" value="">
+          </form>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+
+
+// function shareFlow(){
+//   var message = {
+//     "attachment":{
+//        "type":"template",
+//        "payload":{
+//          "template_type":"generic",
+//          "elements":[
+//             {
+//              "title":"Welcome!",
+//              "image_url":"https://petersfancybrownhats.com/company_image.png",
+//              "subtitle":"We have the right hat for everyone.",
+//
+//              "buttons":[
+//                {
+//                  "type":"web_url",
+//                  "url":"https://petersfancybrownhats.com",
+//                  "title":"View Website"
+//                }
+//              ]
+//            }
+//          ]
+//        }
+//      }
+//   }
+//   MessengerExtensions.beginShareFlow(function(share_response) {
+//     if(share_response.is_sent){
+//       window.MessengerExtensions.requestCloseBrowser(null, null);
+//     }
+//   },
+//   function(errorCode, errorMessage) {
+//     console.log(errorMessage);
+//   },
+//   message,
+//   "broadcast");
+// }
+
+
+function sendMessage(){
+  var form = document.getElementById('formData');
+
+  if(!form.checkValidity() ){
+    form.classList.add('was-validated');
+    return false;
+  }
+
+
+  var elements =form.elements;
+    var form_content = {}
+    for (var i = 0, element; element = elements[i++];) {
+    if (element.type != 'button') {
+
+      if ((element.type == 'checkbox' || element.type == 'radio')) {
+        if (element.checked) {
+          form_content[element.name] = element.value;
+        }
+      } else if (element.type == 'password') {
+        form_content[element.id] = btoa(element.value);
+      } else if (element.type == 'email') {
+        form_content[element.id] = btoa(element.value);
+      }
+      else {
+        form_content[element.id] = element.value;
+      }
+
+    }
+  }
+  var psid = $("#psid").val();
+    if(psid){
+      form_content.psid = psid;
+     $.post('https://watson-tlmx-messenger.herokuapp.com/data', form_content).done(function(){
+               MessengerExtensions.requestCloseBrowser(function success() {
+                      // webview closed
+                    }, function error(err) {
+                      // an error occurred
+                    });
+     })
+   }
+}
+
+       window.extAsyncInit = function() {
+
+         MessengerExtensions.getSupportedFeatures(function success(result) {
+              let features = result.supported_features;
+              if (features.indexOf("context") != -1) {
+                MessengerExtensions.getContext('2106254336275881',
+                  function success(thread_context) {
+                    document.getElementById("psid").value = thread_context.psid;
+                  },
+                  function error(err) {
+                    console.log(err);
+                  }
+                );
+              }
+            }, function error(err) {
+              console.log(err);
+            });
+
+       };
+
+       (function(doc, script, domId){
+         var js, fjs = doc.getElementsByTagName(script)[0];
+         if (doc.getElementById(domId)) { return; }
+         js = doc.createElement(script);
+         js.id = domId;
+         js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'Messenger'));
+
+    </script>
+  </body>
+</html>

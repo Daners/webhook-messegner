@@ -181,6 +181,7 @@ app.get('/test-view', function(req, res){
       }
   }
     res.set('Content-Type', 'text/html');
+    console.log('/public/html/view-test');
      res.sendFile(path.join(__dirname+'/public/html/view-test'));
 });
 
