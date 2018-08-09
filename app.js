@@ -88,7 +88,8 @@ app.post('/webhook', (req, res) => {
         // }
           countHandler = countHandler +1;
             console.log(new Date());
-        handleMessageWatson(sender_psid, webhook_event);
+            console.log(JSON.stringify(webhook_event));
+        //handleMessageWatson(sender_psid, webhook_event);
       }
     });
     // Returns a '200 OK' response to all requests
