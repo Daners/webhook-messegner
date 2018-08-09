@@ -72,7 +72,7 @@ app.post('/webhook', (req, res) => {
 
 
         if(webhook_event.message && webhook_event.message.is_echo ){
-          console.log("SEND REPKY.....");
+          console.log("SEND REPKY....."+sender_psid);
           var   response = { "text": "Hola Yo te seguire atendiendo aplicacion 2" }
           callSendAPI(sender_psid,response)
         }
@@ -112,14 +112,12 @@ app.post('/webhook', (req, res) => {
     //   }
     // });
     // Returns a '200 OK' response to all requests
-      res.sendStatus(200);
+
 
   } else {
     // Returns a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
-
-console.log(new Date());
 
 });
 
