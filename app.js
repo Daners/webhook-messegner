@@ -72,6 +72,7 @@ app.post('/webhook', (req, res) => {
 
 
         if(webhook_event.message && webhook_event.message.is_echo ){
+          console.log("SEND REPKY.....");
           var   response = { "text": "Hola Yo te seguire atendiendo aplicacion 2" }
           callSendAPI(sender_psid,response)
         }
