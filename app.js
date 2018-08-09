@@ -63,7 +63,22 @@ app.post('/webhook', (req, res) => {
   if (body.object === 'page') {
     // Iterates over each entry - there may be multiple if batched
 
-  //  body.entry.forEach(function(entry) {
+    body.entry.forEach(function(entry) {
+      let webhook_event ;
+      let sender_psid ;
+      if(entry.standby){
+        webhook_event  = entry.standby[0];
+        sender_psid = webhook_event.sender.id;
+
+
+        if(webhook_event.message && webhook_event.message.is_echo ){
+          var   response = { "text": "Hola Yo te seguire atendiendo aplicacion 2" }
+          callSendAPI(sender_psid,response)
+        }
+
+
+      }
+    })
       //    console.log(  entry.id +" "+idEntry);
       // if(idEntry && idEntry === entry.id){
       //   return true;
