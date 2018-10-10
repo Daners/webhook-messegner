@@ -686,6 +686,8 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Gracias!" }
   } else if (payload === 'no') {
     response = { "text": "Prueba con otra imagen." }
+  }else if (payload === 'RESTART_CONVERSATION'){
+    response = { "text": "Hola como estas" }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
