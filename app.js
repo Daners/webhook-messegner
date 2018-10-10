@@ -493,6 +493,25 @@ function handleMessage(sender_psid, received_message) {
                callSendAPI(sender_psid, response);
                return true;
     }
+
+
+    if(received_message.text && received_message.text == "Hola" || received_message.text == "hola" || received_message.text == "Hi"){
+
+    response = {
+        text:"Hola"
+      }
+    callSendAPI(sender_psid, response);
+    return true;
+  }
+
+  if(received_message.text && received_message.text == "Ayuda" || received_message.text == "ayuda" ){
+
+  response = {
+      text:"Recuerda, puedo ayudarte a resolver dudas sobre los paquetes o en el proceso de contratación, quieres crecer tu paquete o necesitas soporte técnico, estoy aquí para ayudarte."
+    }
+  callSendAPI(sender_psid, response);
+  return true;
+}
       if(received_message.text && received_message.text == "test-list2"){
 
       response = {
