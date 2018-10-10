@@ -62,8 +62,25 @@ app.post('/webhook', (req, res) => {
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
     // Iterates over each entry - there may be multiple if batched
-
+  console.log(JSON.stringify(body.entry));
     body.entry.forEach(function(entry) {
+      let webhook_event ;
+      let sender_psid ;
+      if(entry.standby){
+        webhook_event  = entry.standby[0];
+        sender_psid = webhook_event.sender.id;
+
+
+        if(webhook_event.message && webhook_event.message.is_echo ){
+          sender_psid = webhook_event.recipient.id;
+          console.log("SEND REPKY....."+sender_psid);
+          var   response = { "text": "Hola Yo te seguire atendiendo aplicacion 2" }
+          //callSendAPI(sender_psid,response)
+        }
+
+
+      }
+    })
       //    console.log(  entry.id +" "+idEntry);
       // if(idEntry && idEntry === entry.id){
       //   return true;
@@ -92,14 +109,12 @@ app.post('/webhook', (req, res) => {
       }
     });
     // Returns a '200 OK' response to all requests
-  //  res.status(200).send('EVENT_RECEIVED');
+
 
   } else {
     // Returns a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
-
-console.log(new Date());
 
 });
 
